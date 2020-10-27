@@ -12,7 +12,7 @@
   align-items: center;
   z-index: 5;
   animation: move 3s forwards ease-in-out;
-  animation-delay: 2s;
+  animation-delay: 0.5s;
 }
 .nextPage .nextPage-1{
   border: 30rpx solid transparent;
