@@ -1,0 +1,15 @@
+<view class="dynasty-item color_ff">
+  <view class="header flex">
+    <text class="yuweij">{{scene.name}}</text>
+  </view>
+  <view class="preface-group bodyContent flex" style="background:url(https://cqzrkj.oss-cn-beijing.aliyuncs.com/IMG/midbackup.png)">
+    <view class="culture-exam">
+      <image src="{{scene.imgURL}}"></image>
+    </view>
+    <view class="content">
+      <text>{{scene.synopsis}}</text>
+      <explain mp3Url="{{scene.mp3Url}}" bindrun="run"></explain>
+    </view>
+  </view>
+  <view class="footer"></view>
+</view>

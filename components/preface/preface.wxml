@@ -1,0 +1,14 @@
+<view class="preface-item color_ff">
+  <view class="header flex">
+    <text class="yuweij">序言</text>
+  </view>
+  <view class="preface-group bodyContent flex" style="background:url(https://cqzrkj.oss-cn-beijing.aliyuncs.com/IMG/midbackup.png)">
+    <view class="content">
+      <view class="content-view">
+        <text class="content-text">{{prefacetext}}</text>
+		    <explain mp3Url="{{mp3Url}}" bindrun="run"></explain>
+      </view>
+    </view>
+  </view>
+  <view class="footer"></view>
+</view>

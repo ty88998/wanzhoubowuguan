@@ -1,0 +1,3 @@
+<view bind:tap="back2Top" class="back-top" style="right:{{right}}rpx;bottom:{{bottom}}rpx;z-indez:{{zIndex}}">
+    <image class="back-top-img" src="../../assets/show/back-top.png" />
+</view>

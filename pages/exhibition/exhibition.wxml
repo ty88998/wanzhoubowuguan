@@ -1,0 +1,13 @@
+<view class="exhibition-page">
+  <view class="tab-list">
+    <block wx:for="{{showCategory}}" wx:key="index">
+      <view data-index="{{index}}" data-recno="{{item.recNo}}" bindtap="switchToShow" class="tab-item ellipsis {{index===showTable?'tab-item-cover':''}}">
+        {{item.name}}
+      </view>
+    </block>
+  </view>
+  <view wx:if="{{showData.length}}" class="show-content">
+    <x-flow-slot flowData="{{showData}}" generic:selectable="x-flow-card" imageField="thumbnail" loadEnd="{{loadEnd}}" />
+  </view>
+</view>
+<x-back-top></x-back-top>

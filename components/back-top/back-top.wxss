@@ -1,0 +1,15 @@
+.back-top {
+    position: fixed;
+    width: 70rpx;
+    height: 70rpx;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20rpx;
+}
+
+.back-top-img {
+    width: 50rpx;
+    height: 50rpx;
+}

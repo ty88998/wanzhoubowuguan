@@ -1,0 +1,141 @@
+.js-group {
+    display: flex;
+    align-items: center;
+    height: 60rpx;
+    padding-left: 20rpx;
+    border-radius: 20rpx 0 0 20rpx;
+    background-color: #5887e0;
+    color: white;
+}
+
+.js-detail {
+    box-sizing: border-box;
+    padding: 20rpx 50rpx;
+    box-shadow: 0 0 10rpx 0 #aaa;
+    margin: 20rpx 0;
+}
+
+.dzpw {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dz {
+    margin-top: 20rpx;
+    box-sizing: border-box;
+    padding: 50rpx;
+    width: 360rpx;
+    min-height: 150rpx;
+    border-radius: 20rpx;
+    box-shadow: 0 0 10rpx 0 #aaa;
+}
+
+.dz view {
+    display: flex;
+    margin-bottom: 10rpx;
+}
+
+.dz text {
+    font-size: 25rpx;
+    color: #9da3c4;
+}
+
+.dztb {
+    margin-left: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.pw {
+    margin-top: 20rpx;
+    padding: 20rpx;
+    box-sizing: border-box;
+    width: 315rpx;
+    min-height: 150rpx;
+    border-radius: 20rpx 0rpx 0rpx 20rpx;
+    box-shadow: 0 0 10rpx 0 #aaa;
+}
+
+.pw view {
+    display: flex;
+    margin-bottom: 10rpx;
+}
+
+.pw text {
+    font-size: 25rpx;
+    color: #9da3c4;
+}
+
+.jc {
+    margin-top: 20rpx;
+    padding: 50rpx;
+    box-sizing: border-box;
+    width: 100vw;
+    box-shadow: 0 0 10rpx 0 #aaa;
+}
+
+.jc view {
+    display: flex;
+    margin-bottom: 10rpx;
+}
+
+.jc text {
+    font-size: 25rpx;
+    color: #9da3c4;
+}
+
+.kfsj {
+    margin-top: 20rpx;
+    padding: 50rpx;
+    box-sizing: border-box;
+    width: 100vw;
+    box-shadow: 0 0 10rpx 0 #aaa;
+}
+
+.kfsj view {
+    display: flex;
+    margin-bottom: 10rpx;
+    box-sizing: border-box;
+    padding-right: 50rpx;
+}
+
+.kfsj text {
+    font-size: 25rpx;
+    color: #9da3c4;
+}
+
+.qt {
+    margin-top: 20rpx;
+    padding: 50rpx;
+    width: 100vw;
+    box-sizing: border-box;
+    box-shadow: 0 0 10rpx 0 #aaa;
+}
+
+.qt view {
+    display: flex;
+    /*margin-bottom: 10rpx;*/
+}
+
+.qt text {
+    font-size: 25rpx;
+    color: #9da3c4;
+}
+
+image {
+    width: 100%;
+    height: 100%;
+}
+
+.btn {
+    margin: 30rpx auto;
+    height: 94rpx;
+    width: 256rpx;
+    background: #FF9999;
+    border-radius: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36rpx;
+    font-weight: bold;
+}

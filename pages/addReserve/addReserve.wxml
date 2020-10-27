@@ -1,0 +1,50 @@
+<view class="calendar-box" wx:if="{{showCalendar}}">
+	<view class="calendar-styl">
+		<calendar bind:select="bindDateChange" reserveDate="{{reserveDate}}" />
+	</view>
+</view>
+<form bindsubmit="formSubmit">
+	<view class="xzrq yjyy">
+		<text>到馆日期 {{date}}</text>
+		<view bind:tap="selectDate" class="picker">
+			<image src="../../assets/reserve/date.png"></image>
+		</view>
+	</view>
+	<view class="sjxx yjyy">
+		<view class="sj">
+			<text>到馆时间</text>
+			<view class="ssp">
+				<radio-group style="width:100%" bindchange="radioChange">
+					<radio disabled="{{!date}}" style="width:150rpx;height:60rpx" color="#75B0FE" class="radio-styl" wx:for="{{selectTimes}}" wx:key="name" checked="{{item.checked}}" value="{{item.value}}">
+						<text>{{item.name}}<block wx:if="{{ticketQuantity[0]}}">(<text class="ticket-quantity">{{ticketQuantity[index]}}</text>)</block></text>
+					</radio>
+				</radio-group>
+			</view>
+		</view>
+	</view>
+	<view class="yyxx yjyy">
+		<view class="lxr">
+			<text>预约人</text>
+			<input name="visitorName" value="{{visitorName}}" bindblur="checkUserName" placeholder="请输入预约人姓名" />
+		</view>
+		<view class="lxr mgt30">
+			<text>联系电话</text>
+			<input type="number" name="visitorPhone" placeholder="请输入预约人联系电话" bindblur="checkPhoneNum" value="{{visitorPhone}}" />
+		</view>
+		<view class="lxr mgt30">
+			<text>证件类型</text>
+			<block wx:if="{{isShow}}">
+				<p-select selectOption="{{selectOption}}" bind:selectype="selectType" defaultValue="{{defaultCard}}" />
+			</block>
+		</view>
+		<view class="lxr mgt30">
+			<text>证件号码</text>
+			<input name="visitorCardId" placeholder="请输入预约人证件号码" bindblur="getCardId" value="{{visitorCardId}}" />
+		</view>
+	</view>
+	<view class="qdyy">
+		<view>
+			<button form-type="submit">{{btnText||'确定预约'}}</button>
+		</view>
+	</view>
+</form>

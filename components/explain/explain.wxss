@@ -1,0 +1,66 @@
+/* components/explain.wxss */
+.explain {
+  text-indent: 1vmin;
+  position: relative;
+  width: 30vmin;
+}
+
+.explainIcon {
+  width: 6vmin;
+  height: 6vmin;
+  margin-left: 1vmin;
+}
+
+.inline_flex {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.font_12 {
+  font-size: 3.5vmin;
+}
+
+.audio-items {
+  position: absolute;
+  bottom: 10vmin;
+  left: 2vmin;
+  width: 100%;
+  line-height: 1.6;
+  background: #020202
+}
+
+.audio-item {
+  width: 90%;
+  padding-left: 10%;
+  position: relative;
+  text-align: left;
+}
+
+.audio-select::before {
+  content: "";
+  display: inline-block;
+  width: 3vmin;
+  height: 3vmin;
+  border-radius: 10rpx;
+  background: green;
+  position: absolute;
+  top: 35%;
+  left: 0;
+}
+
+.audio-select {
+  color: green;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

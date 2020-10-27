@@ -1,0 +1,57 @@
+<view class="js-group">
+  <text>| 预约须知</text>
+</view>
+<view class="js-detail">
+  <rich-text nodes="{{museumInfo.appointNotice}}"></rich-text>
+</view>
+<view class="js-group">
+  <text>| 参观指南</text>
+</view>
+<view class="dzpw">
+  <view class="dz">
+    <view>
+      <view>地址</view>
+      <view class="dztb">
+        <image src="../../assets/reserve/attr.png"></image>
+      </view>
+    </view>
+    <text>{{museumInfo.address}}</text>
+  </view>
+  <view class="dz">
+    <view>
+      <view>票务</view>
+      <view class="dztb">
+        <image src="../../assets/reserve/ticket.png"></image>
+      </view>
+    </view>
+    <text>{{museumInfo.ticketRules}}</text>
+  </view>
+</view>
+<view class="jc">
+  <view>
+    <view>寄存</view>
+    <view class="dztb">
+      <image src="../../assets/reserve/store.png"></image>
+    </view>
+  </view>
+  <text>{{museumInfo.deposit}}</text>
+</view>
+<view class="kfsj">
+  <view>
+    <view>开放时间</view>
+    <view class="dztb">
+      <image src="../../assets/reserve/openTime.png"></image>
+    </view>
+  </view>
+  <text>{{museumInfo.openingHours}}-{{museumInfo.closeingHours}}</text>
+</view>
+<view class="qt">
+  <view style="margin-bottom:20rpx">
+    <view>其它</view>
+    <view class="dztb">
+      <image src="../../assets/reserve/others.png"></image>
+    </view>
+  </view>
+  <rich-text nodes="{{museumInfo.others}}"></rich-text>
+</view>
+<view bind:tap="goToAddReserve" class="btn">我要预约</view>

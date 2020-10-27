@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "x-flow-card": "/components/fallpull/fallpull",
+    "x-pic-box": "/components/picBox/picbox",
+    "x-flow-slot": "/components/flow-slot/flow-slot"
+  },
+  "navigationBarTitleText": "我的收藏",
+  "enablePullDownRefresh": true
+}

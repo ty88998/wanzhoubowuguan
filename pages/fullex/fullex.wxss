@@ -1,0 +1,29 @@
+/* pages/fullex/fullex.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.header{
+  text-align:center;
+  margin-bottom: 1em;
+}
+.collection-item{
+  display: flex;
+  flex-direction: row;
+}
+
+.collection-item .left, .collection-item .right {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.left image , .right image  {
+  width: 100%;
+}
+
+.font_12{
+  font-size:25rpx;
+  margin: 0.5em 0;
+}

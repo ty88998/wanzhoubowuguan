@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "p-select": "/components/select/select",
+    "calendar":"/components/calendar/calendar"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "预约"
+}

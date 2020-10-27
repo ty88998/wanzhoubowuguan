@@ -1,0 +1,45 @@
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.show-item {
+  overflow: hidden;
+  background: #fff;
+  border-radius: 15rpx;
+  font-size: 20rpx;
+  margin-bottom: 20rpx;
+  font-family: YouYuan Regular;
+  font-weight: bold;
+  line-height: 35rpx;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 2rpx 2rpx 4rpx gray;
+}
+
+.show-item-name {
+  height: 30rpx;
+  line-height: 30rpx;
+  margin-bottom: 6rpx;
+}
+
+.show-option {
+  border-top: 2rpx solid #efeff4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 25rpx 0 25rpx;
+  height: 60rpx;
+}
+
+.show-option-view {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: #a1a1a1;
+  font-size: 30rpx;
+  font-family: YouYuan Regular;
+  font-weight: bold;
+}

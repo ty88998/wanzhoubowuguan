@@ -1,0 +1,42 @@
+/* pages/getInfo/getInfo.wxss */
+.index-page {
+    background: #ffffff;
+    box-sizing: border-box;
+    padding: 100rpx 50rpx;
+    min-height: 100vh;
+}
+
+.get-info {
+    text-align: center;
+}
+
+.get-info>image {
+    height: 200rpx;
+    width: 200rpx;
+    margin-bottom: 50rpx
+}
+
+.content {
+    text-align: left;
+    border-top: 2rpx solid #cccccc;
+    box-sizing: border-box;
+    padding-top: 50rpx;
+}
+
+.content>view {
+    margin-bottom: 40rpx;
+}
+
+.content>text {
+    color: #9d9d9d;
+}
+
+.get-info>button {
+    padding: 0;
+    margin-top: 50rpx;
+    width: 600rpx;
+    height: 90rpx;
+    border-radius: 45rpx;
+    line-height: 90rpx;
+    /* background: #5887e0 */
+}

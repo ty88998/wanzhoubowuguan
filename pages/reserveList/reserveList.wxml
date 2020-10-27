@@ -1,0 +1,27 @@
+<view class="user-recoder">
+  <!-- <text>预约记录</text> -->
+  <view class="no-reserve" wx:if="{{noReserve}}">暂无预约记录</view>
+  <block wx:else>
+    <view bind:tap="goToDetail" data-recno="{{item.recNo}}" class="recoder-box" wx:for="{{recordData}}" wx:key="index">
+      <view wx:if="{{item.isWrite!='0'}}" class="cancel">{{status[item.isWrite]}}</view>
+      <view class="box-left">
+        <view>{{item.year}}</view>
+        <view>{{item.appointmentDate}}</view>
+      </view>
+      <view class="box-line"></view>
+      <view class="box-right">
+        <view>
+          <span style="font-weight:bold">地点：</span>
+          {{item.address}}
+        </view>
+        <view>
+          <view>
+            <span style="font-weight:bold;color:black">时间：</span>
+            {{item.arriveTime==="0"?"上午":"下午"}}
+          </view>
+          <view class="visitor-name">{{item.visitorName}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

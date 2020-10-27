@@ -1,0 +1,33 @@
+<view class="container">
+    <view class="bg" style="background-image: url({{collectionItem.thumbnail}});"></view>
+    <view class="topic">
+        <view class="topic-head">
+            <swiper class="topic-swiper" interval="2000" duration="1000" previous-margin="86rpx" next-margin="382rpx" circular bindchange="swiperChange">
+                <!-- <block wx:if="{{indexInfo.display==2}}"> -->
+                    <block wx:for="{{collectionList}}" wx:key="index">
+                        <swiper-item class="topic-swiper-item">
+                            <view class="swiper-item-box {{currentItem==index?'active':''}}">
+                                <image data-recno="{{item.recNo}}" data-index="{{index}}" mode="scaleToFill" bind:tap="goToVirtual" src="{{item.thumbnail}}" />
+                            </view>
+                        </swiper-item>
+                    </block>
+                <!-- </block>
+                <block wx:else>
+                    <block wx:for="{{scenes}}" wx:key="index">
+                        <swiper-item class="topic-swiper-item">
+                            <view class="swiper-item-box {{currentItem==index?'active':''}}">
+                                <image data-recno="{{item.recNo}}" data-index="{{index}}" mode="scaleToFill" bind:tap="goToVirtual" src="{{item.imgURL}}" />
+                            </view>
+                        </swiper-item>
+                    </block>
+                </block> -->
+            </swiper>
+            <!-- <image class="topic-head-bg" src="{{museumInfo.thumbnail}}" mode="scaleToFill"></image> -->
+        </view>
+        <view class="topic-content">
+            <view class="content-title">{{collectionItem.name}}</view>
+            <!-- <view class="content-time">{{contentTime}}</view> -->
+            <view class="content-body">{{collectionItem.lectures}}</view>
+        </view>
+    </view>
+</view>

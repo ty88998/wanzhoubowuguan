@@ -1,0 +1,13 @@
+<view class="index-page">
+  <view class="get-info" wx:if="{{canIUse}}">
+    <image src="../../assets/20190729_143013.png" />
+    <view class='content'>
+      <view>申请获取以下权限</view>
+      <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+    <button style="background:#5887e0" type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+      授权登录
+    </button>
+  </view>
+  <view wx:else>请升级微信版本</view>
+</view>

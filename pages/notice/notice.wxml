@@ -1,0 +1,13 @@
+<!-- 公告详情页面 -->
+<view class="notice">
+  <view class="noticeTitle">
+    <text>{{noticeinfo.title}}</text>
+  </view>
+  <view class="noticeContent">
+    <rich-text nodes="{{noticeinfo.content}}"></rich-text> 
+  </view>
+  <view class="noticeAttr">
+    <text>时间:{{noticeinfo.creationTime}}</text>
+    <text>浏览量:{{noticeinfo.browseNum}}</text>
+  </view>
+</view>

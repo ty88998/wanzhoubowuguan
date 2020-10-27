@@ -1,0 +1,15 @@
+.collections {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 3vmin 1.5vmin;
+}
+/* pages/collect/collect.wxss */
+.clearBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+.clearBtn>button {
+  width: 75%;
+  background-color: rgb(75, 75, 75);
+  margin: 15rpx auto;
+}

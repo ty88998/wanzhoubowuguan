@@ -1,0 +1,92 @@
+.user-recoder {
+    width: 720rpx;
+    overflow: scroll;
+    min-height: 97vh;
+    margin: 1.5vh auto 0;
+    background: rgb(247, 247, 255);
+    box-sizing: border-box;
+    padding: 20rpx 12rpx;
+}
+
+.user-recoder>text {
+    color: #3333FF;
+    font-size: 30rpx;
+}
+
+.recoder-box {
+    position: relative;
+    margin: 20rpx auto;
+    width: 680rpx;
+    background: #ffffff;
+    border-radius: 20rpx;
+    display: flex;
+    box-sizing: border-box;
+    font-size: 34rpx;
+    border: 2rpx solid rgb(209, 209, 209);
+    box-shadow: 5rpx 5rpx 5rpx rgb(170, 170, 170);
+    padding-bottom: 10rpx;
+}
+
+.cancel {
+    position: absolute;
+    right: -1rpx;
+    top: 6rpx;
+    width: 130rpx;
+    height: 39rpx;
+    border-radius: 25rpx 0 0 25rpx;
+    background: #C0C0C0;
+    font-size: 27rpx;
+    line-height: 39rpx;
+    text-align: center;
+    color: white;
+}
+
+.box-left {
+    font-weight: bold;
+    margin: 40rpx 0 0 30rpx;
+    width: 144rpx;
+}
+
+.box-left>view:nth-child(2) {
+    margin-top: 40rpx;
+}
+
+.box-right {
+    /* width: 334rpx; */
+    margin: 40rpx 0 12rpx 34rpx;
+}
+
+.box-right>view:nth-child(2) {
+    color: #3399FF;
+    margin-top: 40rpx;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 20rpx;
+}
+
+.box-line {
+    height: 180rpx;
+    width: 4rpx;
+    background: rgb(206, 206, 206);
+    align-self: center;
+}
+
+.no-reserve {
+    margin: 20rpx auto;
+    width: 80%;
+    /* background: #ffffff; */
+    height: 200rpx;
+    border-radius: 10rpx;
+    text-align: center;
+    line-height: 200rpx;
+    font-size: 50rpx;
+    color: rgb(170, 170, 170);
+    /* border: 2rpx solid rgb(209, 209, 209); */
+    /* box-shadow: 5rpx 5rpx 5rpx rgb(170, 170, 170); */
+}
+
+.visitor-name {
+    /* color: black; */
+    font-weight: bold;
+}

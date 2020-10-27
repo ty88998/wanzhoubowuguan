@@ -1,0 +1,12 @@
+<!-- 公告列表页面 -->
+<view class="noticeList">
+  <!-- <view class="header">####博物馆公告</view> -->
+  <view class="noticeUl">
+    <block wx:for="{{noticeList}}" wx:key="index">
+      <view class="noticeItem" bindtap="toNotice" data-recno="{{item.recNo}}">
+        <text class="noticeTitle">{{item.title}}</text>
+        <text class="noticeDate">{{item.creationTime}}</text>
+      </view>
+    </block>
+  </view>
+</view>

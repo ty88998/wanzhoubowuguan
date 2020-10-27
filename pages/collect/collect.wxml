@@ -1,0 +1,11 @@
+<view wx:if="{{status == 1}}" class="clearBtn">
+  <button bind:tap="clearHistory">清空历史</button>
+</view>
+<view wx:if="{{showData.length}}" class="collections">
+  <block wx:if="{{column==2}}">
+    <x-flow-slot flowData="{{showData}}" imageField="thumbnail"  generic:selectable="x-flow-card" />
+  </block>
+  <block wx:else>
+    <x-flow-slot flowData="{{showData}}" generic:selectable="x-pic-box" imageField="dataImg" />
+  </block>
+</view>

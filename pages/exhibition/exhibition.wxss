@@ -1,0 +1,38 @@
+/* pages/exhibition/exhibition.wxss */
+
+.exhibition-page {
+  background: #efeff4;
+  box-sizing: border-box;
+  padding-bottom: 20rpx;
+  min-height: 100vh;
+}
+
+.tab-list {
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  height: 104rpx;
+}
+
+.tab-item {
+  width: 167rpx;
+  height: 100%;
+  font-size: 30rpx;
+  font-family: YouYuan Regular;
+  font-weight: bold;
+  text-align: center;
+  line-height: 104rpx;
+  box-sizing: border-box;
+}
+
+.tab-item-cover {
+  border-bottom: 10rpx solid #27acf3;
+  color: #5986e1;
+}
+
+
+.show-content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3vmin 1.5vmin;
+}

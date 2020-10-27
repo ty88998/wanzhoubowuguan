@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "实体展览",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}

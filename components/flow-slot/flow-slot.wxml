@@ -1,0 +1,9 @@
+<view class="flow-slot">
+    <block wx:for="{{showData}}" wx:for-item="showItem" wx:key="index">
+        <view class="flow-col" style="width:{{90/column}}vmin">
+            <block wx:for="{{showItem}}" wx:key="recNo">
+                <selectable disabled="{{false}}" bind:loadimg="loadColInfo" itemData="{{item}}"></selectable>
+            </block>
+        </view>
+    </block>
+</view>

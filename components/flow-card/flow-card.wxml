@@ -1,0 +1,15 @@
+<view id="card-item" class="show-item">
+  <image style="width:101%" src="{{itemData.thumbnail}}" mode="widthFix" bindload="imgLoadToPage" bindtap="goToPage" data-display="{{itemData.display}}" data-recno="{{itemData.dataNo||itemData.recNo}}"></image>
+  <view class="ellipsis show-item-name">{{itemData.region+'—'+itemData.name}}</view>
+  <view class="show-option">
+    <view class="show-option-view" data-recno="{{itemData.recNo}}" data-index="{{index}}" bindtap="addLike">
+      <image style="height:26rpx;width:26rpx;margin-right:12rpx" src="{{itemData.isLike?'../../assets/exhibition/likes.png':'../../assets/exhibition/like.png'}}"></image>
+      {{itemData.pointRatio}}
+    </view>
+    <view class="show-option-view">
+      <image style="height:23rpx;width:31rpx;margin-right:12rpx" src="../../assets/exhibition/see.png"></image>
+      {{itemData.views}}
+    </view>
+    <image style="height:27rpx;width:30rpx" src="{{itemData.isCollect?'../../assets/exhibition/collects.png':'../../assets/exhibition/collect.png'}}" data-recno="{{itemData.recNo}}" bindtap="addCollect"></image>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<view class="detail">
+    <view class="detail-title">个人信息</view>
+    <view style="margin-top:0" class="detail-option">
+        <view>真实姓名:</view>
+        <input value="{{userInfo.name}}" data-type="name" placeholder-style="color:#979b9c" placeholder="请输入真实姓名" bindblur="inputHandler" />
+    </view>
+    <view class="detail-option">
+        <view>证件编号:</view>
+        <input value="{{userInfo.IDCard}}" data-type="IDCard" placeholder-style="color:#979b9c" placeholder="请输入证件编号" bindblur="inputHandler" />
+    </view>
+    <view class="detail-option">
+        <view>性别:</view>
+        <block wx:if="{{userInfo.sex}}">
+            <p-select selectOption="{{sexList}}" bind:selectype="inputHandler" placeholder-style="color:#979b9c" data-type="sex" defaultValue="{{userInfo.sex}}" />
+        </block>
+    </view>
+    <view class="detail-option">
+        <view>城市:</view>
+        <input value="{{userInfo.city}}" data-type="city" placeholder-style="color:#979b9c" placeholder="请输入所在城市" bindblur="inputHandler" />
+    </view>
+    <view class="ctrl-btn">
+        <view bind:tap="updateUserInfo">修改</view>
+    </view>
+</view>

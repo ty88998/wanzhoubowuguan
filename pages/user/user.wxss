@@ -1,0 +1,69 @@
+/* pages/user/user.wxss */
+
+.user-page {
+  min-height: 100vmax;
+  background: #efeff4;
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+
+.user-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden
+}
+
+.user-name {
+  margin-left: 30rpx;
+  font-size: 40rpx;
+  text-align: left;
+}
+
+.user-body {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.user-items {
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.user-item-icon {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right: 15rpx;
+}
+
+.user-item {
+  padding: 30rpx;
+  width: 650rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  font-size: 36rpx;
+  position: relative;
+  border-bottom: 1rpx solid rgb(239, 239, 244);
+}
+
+.user-item::after {
+  border: 2rpx solid #c8c8cd;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  content: "";
+  width: 15rpx;
+  height: 15rpx;
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  transform: translateY(-50%) rotate(45deg);
+}

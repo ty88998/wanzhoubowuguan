@@ -1,0 +1,20 @@
+.pic-box {
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 2rpx 2rpx 4rpx gray;
+  border-radius: 2vmin;
+  overflow: hidden;
+  padding-bottom: 2vmin;
+  margin-bottom: 2vmin;
+}
+
+.pic-url {
+  width: 101%;
+}
+
+.pic-name {
+  font-size: 3.3vmin;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

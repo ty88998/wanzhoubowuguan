@@ -1,0 +1,27 @@
+<!--pages/fullex/fullex.wxml-->
+<view class="container">
+  <view class="header">
+    <text>{{indexInfo.name}}</text>
+  </view>
+
+  <block wx:for="{{collectionList}}" wx:key="index">
+    <view wx:if="{{index%2==0}}" class="collection-item">
+      <view class="left">
+        <image src="{{item.thumbnail}}"></image>
+      </view>
+      <view class="right">
+        <text>{{item.name}}</text>
+        <text class="font_12">{{indexInfo.region}}</text>
+      </view>
+    </view>
+    <view wx:else class="collection-item">
+      <view class="left">
+        <text>{{item.name}}</text>
+        <text class="font_12">{{indexInfo.region}}</text>
+      </view>
+      <view class="right">
+        <image src="{{item.thumbnail}}"></image>
+      </view>
+    </view>
+  </block>
+</view>

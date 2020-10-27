@@ -1,0 +1,21 @@
+<!--pages/scene/scene.wxml-->
+<view class="container">
+  <view class="bg" style="background-image: url(../../assets/20200908105142.png);"></view>
+  <view class="scenes">
+    <block wx:for="{{scenes}}" wx:key="index">
+      <view class="scene" bindtap="toSceneCollect" data-recno="{{item.recNo}}">
+        <view class="scene-header">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="scene-synopsis">
+          <text>{{item.synopsis}}</text>
+        </view>
+        <view class="collections">
+          <view class="collection-item" wx:for="{{item.collections}}" wx:for-item="collection" wx:key="*this">
+            <text>{{collection.name}}</text> -- <text>{{collection.name}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

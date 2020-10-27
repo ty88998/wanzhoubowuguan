@@ -1,0 +1,16 @@
+<!-- 相关信息-器物研究 components/articleul/articleul.wxml-->
+<view class="article-list">
+  <view class="article" wx:for="{{articles}}" wx:key="{{id}}">
+    <view class="article-title">
+      <navigator url="/pages/article/article?recno={{item.recNo}}">
+        {{item.name}}
+      </navigator>
+    </view>
+    <view class="article-info">
+      <text class="small_text">重庆三峡博物馆</text>
+      <!-- <text class="small_text">2315</text> -->
+      <text class="small_text">2019-04-15</text>
+    </view>
+  </view>
+
+</view>

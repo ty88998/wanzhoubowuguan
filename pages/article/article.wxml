@@ -1,0 +1,12 @@
+<!-- 文章页面 pages/article/article.wxml-->
+<view>
+	<view class="article-title-group">
+	    <view class="back center"><view bind:tap="back">返回</view></view>
+		<view class="article-header">{{article.name}}</view>
+	</view>
+	
+	<view class="article-content">
+		<rich-text nodes="{{article.content}}" class="content-text"></rich-text>
+	</view>
+	<view class="article-footer"></view>
+</view>

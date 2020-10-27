@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "x-flow-card": "/components/flow-card/flow-card",
+    "x-flow-slot": "/components/flow-slot/flow-slot",
+    "x-back-top":"/components/back-top/back-top"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "展览",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}

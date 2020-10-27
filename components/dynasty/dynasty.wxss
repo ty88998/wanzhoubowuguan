@@ -1,0 +1,73 @@
+.dynasty-item {
+  width: 100vmax;
+  height: 100%;
+}
+
+.header {
+  height: 15vmin;
+}
+
+.footer {
+  height: 10vmin;
+}
+
+.bodyContent {
+  height: 75vmin;
+}
+
+.bodyContent {
+  background-size: 100%;
+  font-family: 'PingFangSC';
+  padding: 0 5vmin;
+  white-space: normal;
+}
+
+.culture-exam {
+  width: 28vmax;
+  margin: 0 2vmax;
+}
+
+.culture-exam image {
+  width: 100%;
+}
+
+.content {
+  font-size: 4vmin;
+  letter-spacing: 0.3vmin;
+  line-height: 2;
+  height: 90%;
+  width: 60vmax;
+  margin: 0 2vmax;
+  overflow: scroll;
+}
+
+.right_arr {
+  width: 8vmin;
+  height: 8vmin;
+}
+
+.header, .footer {
+  background-color: #76241e;
+  background: linear-gradient(to right, #080808, #76241e 45%);
+}
+
+.bodyContent .content-text {
+  font-size: 4.5vmin;
+  line-height: 2;
+  letter-spacing: 2rpx;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.color_ff {
+  color: #fff;
+}
+
+.yuweij {
+  font-family: 'yuweiJ';
+  font-size: 10vmin;
+}

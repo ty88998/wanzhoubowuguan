@@ -1,0 +1,13 @@
+<!-- 实体展览列表页面 -->
+<view class="show-more-page">
+    <view class="live-show" bindtap="goToPage" data-title="{{item.title}}" data-recno="{{item.recno}}" wx:for="{{liveShow}}" wx:key="recno">
+        <view class="show-img">
+            <image src="{{item.img}}"></image>
+            <view>
+                <text>{{item.viewer}}</text>
+                人观看
+            </view>
+        </view>
+        <view class="item-title">{{item.title}}</view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "p-select": "/components/select/select"
+  },
+  "navigationBarTitleText": "修改个人信息"
+}

@@ -1,0 +1,40 @@
+/* components/select/select.wxss */
+
+.select-box {
+    position: relative;
+    color: #979b9c;
+    font-size: 30rpx;
+    z-index: 10;
+}
+
+.select-show {
+    display: flex;
+    min-width: 412rpx;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.select-icon {
+    width: 30rpx;
+    height: 30rpx;
+    transform: rotate(90deg);
+}
+
+.select-option {
+    position: absolute;
+    left: -20rpx;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+    padding: 20rpx 0 0 20rpx;
+    display: flex;
+    flex-direction: column;
+    width: 412rpx;
+    background: whitesmoke;
+}
+
+.select-option-item-odd {
+    background-color: #ffffff;
+    margin-left: -20rpx;
+    padding-left: 20rpx;
+    width: 412rpx;
+}

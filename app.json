@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/addReserve/addReserve",
+    "pages/collect/collect",
+    "pages/exhibit/exhibit",
+    "pages/exhibition/exhibition",
+    "pages/exhibitentity/exhibitentity",
+    "pages/login/login",
+    "pages/notice/notice",
+    "pages/noticeList/noticeList",
+    "pages/reserve/reserve",
+    "pages/reserveList/reserveList",
+    "pages/success/success",
+    "pages/virtualShow/virtualShow",
+    "pages/topicShow/topicShow",
+    "pages/reserveDetail/reserveDetail",
+    "pages/userInfo/userInfo",
+    "pages/user/user",
+    "pages/three/three",
+    "pages/fullex/fullex",
+    "pages/topic/topic",
+    "pages/scene/scene"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "博物馆展览",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#4B4B4B",
+    "selectedColor": "#6CA8FE",
+    "backgroundColor": "#ffffff",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/assets/index.png",
+        "selectedIconPath": "/assets/indexs.png"
+      },
+      {
+        "pagePath": "pages/exhibition/exhibition",
+        "text": "展览",
+        "iconPath": "/assets/exhibition.png",
+        "selectedIconPath": "/assets/exhibitions.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "/assets/user.png",
+        "selectedIconPath": "/assets/users.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

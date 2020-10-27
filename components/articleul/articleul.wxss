@@ -1,0 +1,26 @@
+/* components/articleul/articleul.wxss */
+
+.article-list {
+  height: 100%;
+  overflow: scroll;
+}
+
+.article {
+  height: 12vmin;
+  width: 85%;
+  border-bottom: 0.5vmin solid #000;
+  padding: 2vmin;
+}
+
+.article-title {
+  font-size: 5vmin;
+  line-height: 8vmin;
+}
+
+.article-info {
+  font-size: 3vmin;
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

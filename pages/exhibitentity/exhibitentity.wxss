@@ -1,0 +1,131 @@
+/* pages/showDetails/showDetails.wxss */
+.show-details-page {
+    min-height: 100vh;
+    background: #E3E2E8;
+    box-sizing: border-box;
+    padding: 22rpx 17rpx 102rpx 17rpx;
+}
+
+swiper {
+    width: 716rpx;
+    height: 400rpx;
+}
+
+.show-details-title {
+    margin-top: 22rpx;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 26rpx 76rpx;
+    color: #242424;
+    text-align: center;
+    font-size: 36rpx;
+    line-height: 37rpx;
+    font-family: YouYuan Regular;
+    font-weight: bold;
+    background: #FFFFFF
+}
+
+.show-details-intro {
+    margin-top: 22rpx;
+    box-sizing: border-box;
+    padding: 27rpx 22rpx 27rpx 29rpx;
+    position: relative;
+    border-radius: 8rpx;
+    background: #FFFFFF
+}
+
+.intro-content {
+    text-indent: 105rpx;
+    font-size: 32rpx;
+    font-family: YouYuan Regular;
+    color: #464646;
+    line-height: 1.6;
+}
+
+.show-details-icon {
+    position: absolute;
+    top: 22rpx;
+    left: 29rpx;
+    width: 95rpx;
+    height: 43rpx;
+    color: #FFFFFF;
+    font-family: YouYuan Regular;
+    font-weight: bold;
+    line-height: 43rpx;
+    text-align: center;
+    font-size: 28rpx;
+    background: #5986E1;
+    border-radius: 11rpx;
+}
+
+.position-ticket {
+    display: flex;
+}
+
+.option-title {
+    display: flex
+}
+
+.option-title view {
+    font-size: 32rpx;
+    color: #242424;
+    margin-right: 11rpx;
+    line-height: 33rpx;
+    font-family: YouYuan Regular;
+    font-weight: bold;
+}
+
+.show-details-position {
+    margin-top: 22rpx;
+    width: 368rpx;
+    height: 205rpx;
+    background: #FFFFFF;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 34rpx 29rpx;
+}
+
+.position-content {
+    margin-top: 27rpx;
+    font-family: YouYuan Regular;
+    font-size: 28rpx;
+    color: #9296BA;
+    font-weight: bold;
+    line-height: 36rpx;
+}
+
+.show-details-ticket {
+    width: 332rpx;
+    height: 205rpx;
+    margin-top: 22rpx;
+    margin-left: 16rpx;
+    border-radius: 10rpx;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    padding: 34rpx 29rpx 34rpx 78rpx;
+}
+
+.show-details-date {
+    background: #FFFFFF;
+    margin-top: 22rpx;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 34rpx 29rpx;
+}
+
+.show-details-warning {
+    background: #FFFFFF;
+    margin-top: 22rpx;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 43rpx 33rpx 54rpx 26rpx;
+}
+
+.warning-content{
+    margin-top: 27rpx;
+    font-family: YouYuan Regular;
+    font-size: 28rpx;
+    color: #9296BA;
+    font-weight: bold;
+    line-height: 50rpx;
+}

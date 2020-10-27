@@ -1,0 +1,19 @@
+<view class="collection-item PingFangSC color-ff">
+  <view class="header flex">
+    <text class="PingFangSC font_header">{{collection.name}}</text>
+  </view>
+  <view class="subhead">
+    <text>{{collection.name}}</text>
+  </view>
+  <view class="collection-group bodyContent">
+    <view class="content">
+      <text>{{display=='2'?collection.lectures:collection.synopsis}}</text>
+      <explain class="explainbtn" mp3Url="{{collection.mp3Url}}" bindrun="run"></explain>
+    </view>
+    <view class="culture-img">
+      <view class="culture-thumbnail"> 
+        <image src="{{display==='2'?collection.thumbnail:collection.imgURL}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

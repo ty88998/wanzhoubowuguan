@@ -1,0 +1,159 @@
+.xzrq {
+  height: 90rpx;
+  margin: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx 0 30rpx;
+}
+
+.xzrq view {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+image {
+  height: 100%;
+  width: 100%;
+}
+
+.sjxx {
+  padding: 30rpx;
+  margin: 30rpx;
+}
+
+.yyrs {
+  display: flex;
+  height: 40rpx;
+  padding: 25rpx;
+  margin-top: 30rpx;
+}
+
+.yyrs view {
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 30rpx;
+}
+
+.ssp {
+  margin-top: 30rpx;
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+}
+
+.yyxx {
+  font-size: 30rpx;
+  padding: 30rpx;
+  margin: 0 30rpx 0 30rpx;
+}
+
+.lxr {
+  height: 70rpx;
+  padding-left: 30rpx;
+  background: #f5f7fe;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+}
+
+.lxr text {
+  width: 160rpx;
+}
+
+.mgt30 {
+  margin-top: 30rpx;
+}
+
+.qdyy {
+  margin-top: 80rpx;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 35rpx;
+}
+
+.qdyy view {
+  width: 310rpx;
+  height: 90rpx;
+  background: #74b1fd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 45rpx;
+}
+
+.qdyy view button {
+  background: #74b1fd;
+  width: 310rpx;
+  border-radius: 45rpx;
+  height: 90rpx;
+  color: white;
+  font-size: 35rpx;
+}
+
+.picker {
+  background: #f5f7fe;
+  font-size: 26rpx;
+  color: #979b9c;
+}
+
+.horizontal-line {
+  width: 40rpx;
+  height: 26rpx;
+  box-sizing: border-box;
+  padding: 18rpx 10rpx 0;
+}
+
+.horizontal-line>view {
+  background: black;
+  width: 20rpx;
+  height: 2rpx;
+}
+
+.calendar-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .8);
+  z-index: 99;
+}
+
+.calendar-styl {
+  box-sizing: border-box;
+  padding: 40rpx 30rpx;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+}
+
+.select-addr {
+  height: 90rpx;
+  margin: 30rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx 0 30rpx;
+  box-shadow: 0px 0px 5px 0px #aaa;
+  border-radius: 15rpx;
+  justify-content: space-between;
+}
+
+.radio-styl {
+  margin-left: 20rpx;
+  min-width: 250rpx;
+  line-height: 60rpx;
+}
+
+.ticket-quantity {
+  font-size: 24rpx;
+  color: red;
+}
+
+.radio-styl-disable {
+  display: flex;
+  width: 200rpx;
+  align-items: center;
+}

@@ -1,0 +1,34 @@
+<!-- 单个实体展览 -->
+<view class="show-details-page">
+    <view>
+        <image style="width:716rpx;height: 400rpx" src="{{entityDisplay.thumbnail}}" />
+    </view>
+    <view class="show-details-title">{{entityDisplay.title}}</view>
+    <view class="show-details-intro">
+        <view class="show-details-icon">简介</view>
+        <view class="intro-content">{{entityDisplay.content}}</view>
+    </view>
+    <view class="position-ticket">
+        <view class="show-details-position">
+            <view class="option-title">
+                <view>展出地点</view>
+                <image style="height:35rpx;width:28rpx" src="../../assets/showDetails/position.png" />
+            </view>
+            <view class="position-content">{{entityDisplay.place}}</view>
+        </view>
+        <view class="show-details-ticket">
+            <view class="option-title">
+                <view>票务</view>
+                <image style="height:35rpx;width:25rpx" src="../../assets/showDetails/ticket.png" />
+            </view>
+            <view class="position-content">{{entityDisplay.ticketing}}</view>
+        </view>
+    </view>
+    <view class="show-details-date">
+        <view class="option-title">
+            <view>展览时间</view>
+            <image style="height:36rpx;width:36rpx" src="../../assets/showDetails/calendar.png" />
+        </view>
+        <view class="position-content">{{entityDisplay.startTime}}--{{entityDisplay.endTime}}</view>
+    </view>
+</view>

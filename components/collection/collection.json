@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "explain": "/components/explain/explain"
+  },
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "文物详情",
+  "navigationBarTextStyle": "black"
+}

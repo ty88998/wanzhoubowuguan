@@ -1,0 +1,62 @@
+/* pages/showMore/showMore.wxss */
+.show-more-page {
+    background: #E3E2E8;
+    box-sizing: border-box;
+    padding: 20rpx 25rpx;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.live-show {
+    box-sizing: border-box;
+    padding-bottom: 10rpx;
+    margin-bottom: 30rpx;
+    width: 330rpx;
+    text-align: center;
+    font-size: 30rpx;
+    font-family: YouYuan Regular;
+    color: #4D4D4D;
+    font-weight: bold;
+    border-radius: 8rpx;
+    background: #FFF;
+    height: 485rpx
+}
+
+.item-title {
+    box-sizing: border-box;
+    padding: 0 10rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.show-img>image {
+    width: 330rpx;
+    height: 380rpx;
+    margin-bottom: -10rpx;
+}
+
+.show-img {
+    margin-bottom: 10rpx;
+}
+
+.show-img>view {
+    height: 45rpx;
+    background: rgb(100, 101, 99);
+    line-height: 45rpx;
+    z-index: 10;
+    font-size: 28rpx;
+    font-family: YouYuan Regular;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.show-img text {
+    font-family: 仿宋 Regular;
+    font-size: 30rpx;
+    margin-right: -10rpx;
+    font-weight: bold;
+}

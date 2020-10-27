@@ -1,0 +1,23 @@
+<view class="yycg">
+    <view class="cgtb">
+        <image src="../../assets/reserve/success.png"></image>
+    </view>
+</view>
+<view class="cgwz">
+    <view>
+        <text class="t1">恭喜您，预约成功\t!\n</text>
+    </view>
+    <view>
+        <text class="t2">请按时前往所预约的场馆\n</text>
+    </view>
+    <view>
+        <text class="t2 t3">祝您旅途愉快\n</text>
+    </view>
+</view>
+<view class="cgan">
+    <view class="anview">
+        <view class="aniu a1">
+            <navigator open-type="switchTab" url="/pages/index/index">回到首页</navigator>
+        </view>
+    </view>
+</view>

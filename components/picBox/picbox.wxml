@@ -1,0 +1,4 @@
+<view class="pic-box" id="pic-box-item" bindtap="goToPage"  data-display="{{itemData.display}}" data-recno="{{itemData.dataNo}}">
+	<image  bindload="imgLoadToPage" class="pic-url" mode="widthFix" src="{{itemData.dataImg}}"></image>
+	<view class="pic-name">{{itemData.dataTitle}}</view>
+</view>

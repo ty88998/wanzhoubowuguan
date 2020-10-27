@@ -1,0 +1,17 @@
+/* pages/notice/notice.wxss */
+.notice{
+  padding: 0 25rpx 40rpx;
+}
+.noticeTitle {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin: 0.5em 0;
+  text-indent: 1.5em;
+  line-height: 1.5;
+}
+.noticeAttr {
+  font-size: 25rpx;
+  line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
+}

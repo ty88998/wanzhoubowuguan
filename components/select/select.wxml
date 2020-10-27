@@ -1,0 +1,13 @@
+<view class="select-box">
+    <view bind:tap="showSelect" data-value="{{selectValue}}" class="select-show">
+        {{selectValue.type||defaultText}}
+        <image class="select-icon" style="{{isSelected?'transform:rotate(0)':''}}" src="../../assets/reserve/jiantou.png" />
+    </view>
+    <view class="select-option" wx:if="{{isSelected}}">
+        <block wx:for="{{selectOption}}" wx:key="index">
+            <view wx:if="{{item}}" style="height:50rpx" class="{{index%2===0?'select-option-item-odd':''}}" bind:tap="selectCardType" data-value="{{item.value}}">
+                {{item.type}}
+            </view>
+        </block>
+    </view>
+</view>

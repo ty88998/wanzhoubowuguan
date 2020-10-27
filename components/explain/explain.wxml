@@ -1,0 +1,12 @@
+<!-- components/explain.wxml -->
+<!-- 语音讲解的小图标 -->
+<view class="explain">
+  <block wx:if="{{mp3Url!=null}}">
+    <view class="inline_flex" bindtap="listenIt"  data-url="{{mp3Url}}">
+      <image class="explainIcon" src="../../assets/show/voice.png"></image>
+      <view class="flex_column">
+        <text class="font_12">语音解说</text>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,9 @@
+.flow-slot {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flow-col {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,60 @@
+<!-- 首页 -->
+<view class="index-page">
+  <!-- banner -->
+  <view class="swipper">
+    <image src="{{museumInfo.thumbnail}}" mode="scaleToFill"></image>
+  </view>
+  <!-- 博物馆公告 -->
+  <view class="index-notice">
+    <image src="../../assets/notice.png" style="height:36rpx;width:36rpx;"></image>
+    <view class="notice-title" bindtap="goToMore" data-url="/pages/notice/notice" data-recno="{{notice.recNo}}">
+      {{notice.title || '暂无公告'}}
+    </view>
+    <block wx:if="{{notice.length>0}}">
+      <view bindtap="goToMore" data-url="/pages/noticeList/noticeList" class="show-all">
+        更多
+        <image src="../../assets/back.png"></image>
+      </view>
+    </block>
+  </view>
+  <!-- 近期展览 -->
+  <view class="show-container">
+    <view class="show-title">
+      <view class="hot-show">
+        <view class="vertical-line"></view>
+        馆内一览
+      </view>
+      <!-- <view bindtap="goToMore" data-url="/pages/exhibit/exhibit" class="show-all">
+        查看全部
+        <image src="../../assets/back.png"></image>
+      </view> -->
+    </view>
+    <view class="live-show">
+      <block wx:for="{{liveShow}}" wx:key="index">
+        <view class="live-show-item">
+          <!-- <view bindtap="goToMore" data-url="/pages/exhibitentity/exhibitentity" data-recno="{{item.recNo}}" class="live-show-item"> -->
+          <view bind:tap="preImg" data-image="{{item.sourceImg}}" class="live-show-item-img">
+            <image src="{{item.imgUrl}}" mode="scaleToFill"></image>
+            <!-- <view>
+              <text>{{item.browseNum}}</text>
+              人观看
+            </view> -->
+          </view>
+          <view class="live-show-item-title">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 博物馆介绍 -->
+  <view class="museum-introduce">
+    <view class="introduce-title">
+      <view class="vertical-line"></view>
+      博物馆介绍
+    </view>
+    <view class="introduce-content">
+      <view>
+        <rich-text class="" nodes="{{museumInfo.synopsis}}"></rich-text>
+      </view>
+    </view>
+  </view>
+</view>
