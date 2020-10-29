@@ -12,7 +12,7 @@
   align-items: center;
   z-index: 5;
   animation: move 3s forwards ease-in-out;
-  animation-delay: 0.5s;
+  animation-delay: 1s;
 }
 .nextPage .nextPage-1{
   border: 30rpx solid transparent;
@@ -67,7 +67,7 @@
 }
 
 .toscenes{
-  height:64rpx
+  height:64rpx;
 }
 .toscenes-img {
   width: 64rpx;
@@ -76,7 +76,28 @@
 }
 .scene{
   margin-top: 1.5em;
+  position: relative;
   border-bottom: 1rpx solid #8b8b8b
+}
+.goToDetail{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color:#fff;
+  width: 60rpx;
+  height: 90rpx;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.goToDetail:active{
+  transform: scale(1.2) translateX(4rpx);
+  transition-duration: 0.1s;
+}
+.goToDetail .triangle{
+  height: 60rpx;
+  width: 36rpx;
 }
 .scene-header{
   font-size-adjust: 0.8;

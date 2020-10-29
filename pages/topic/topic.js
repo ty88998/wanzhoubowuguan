@@ -144,10 +144,10 @@ Page({
   },
   onPullDownRefresh: function () {},
   //触摸时隐藏提醒翻页箭头
-  touchStart(){
-    this.setData({
-      nextPage:false
-    })
-  }
+  // touchStart(){
+  //   this.setData({
+  //     nextPage:false
+  //   })
+  // }
 });
 

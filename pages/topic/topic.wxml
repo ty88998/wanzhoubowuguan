@@ -1,5 +1,5 @@
 <!--pages/topic/topic.wxml-->
-<view class="container" bindtouchstart="touchStart">
+<view class="container">
   <view class="nextPage" wx:if="{{nextPage}}">
     <view class="nextPage-1"></view>
     <view class="nextPage-2"></view>
@@ -17,14 +17,14 @@
         <view class="topic-content">
           <text>{{indexInfo.preface}}</text>
           <view class="toscenes">
-            <image class="toscenes-img" src="../../assets/exhibition/jinru.png"></image>
+            <!-- <image class="toscenes-img" src="../../assets/exhibition/jinru.png"></image> -->
           </view>
         </view>
       </view>
     </swiper-item>
     <swiper-item class="swiper-item1">
       <block wx:for="{{scenes}}" wx:key="index">
-        <view class="scene" bindtap="toSceneCollect" data-recno="{{item.recNo}}">
+        <view class="scene">
           <view class="scene-header">
             <text>{{item.name}}</text>
           </view>
@@ -35,6 +35,10 @@
             <view class="collection-item" wx:for="{{item.collections}}" wx:for-item="collection" wx:key="*this">
               <text>{{collection.name}}</text> -- <text>{{collection.name}}</text>
             </view>
+          </view>
+          <view class="goToDetail" bindtap="toSceneCollect" data-recno="{{item.recNo}}">
+            <text>详情</text>
+            <image class="triangle" src="../../assets/right.png"></image>
           </view>
         </view>
       </block>
