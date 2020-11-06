@@ -1,5 +1,6 @@
 //index.js
 import { getWXOpenId, getMuseumsInfo, getNoticeInfos, getMuseumPicture } from '../../api/indexInfo'
+import { getMuseums } from '../../api/reserveInfo'
 import { setItem } from '../../utils/store'
 
 const appInst = getApp()
@@ -9,14 +10,31 @@ Page({
   data: {
     notice: [],
     museumInfo: {},
-    liveShow: []
+    liveShow: [],
+    museumInfoThis:{}
   },
 
    onLoad() {
     this._getOpenId()
     this._initData()
   },
-
+  async getMuseumsThis(){
+    try{
+      let {data} = await getMuseums({recNo:this.data.museumInfo.recNo});
+      const museumInfoThis = {
+        address: data.address,
+        ticketRules: data.ticketRules,
+        deposit: data.deposit,
+        phoneNo:data.phoneNo,
+        openingHours: `周二至周日${data.openingHours} - ${data.closeingHours} (节假日除外)\n16:30以后停止进馆`
+      }
+      this.setData({
+        museumInfoThis
+      })
+    }catch(err){
+      console.log('error',err)
+    }
+  },
   /** 通过异步操作，保证博物馆编号的存在 */
   async _initData() {
     try {
@@ -26,6 +44,7 @@ Page({
       this.setData({ museumInfo })
       this._getIndexNotice(museumInfo.recNo)
       this._getMuseumPicture(museumInfo.recNo)
+      this.getMuseumsThis()
     } catch (err) {
       console.log(err)
     }
@@ -45,7 +64,7 @@ Page({
   _getOpenId() {
     wx.login({
       success: res => {
-        console.log(res)
+        // console.log(res)
         if (res.code) {
           getWXOpenId({ code: res.code })
             .then(resp => {

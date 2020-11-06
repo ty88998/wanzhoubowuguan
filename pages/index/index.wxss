@@ -3,10 +3,12 @@
   box-sizing: border-box;
   padding-bottom: 89rpx;
   min-height: 100vh;
+  width: 750rpx;
 }
 
 .swipper {
   height: 391rpx;
+  width: 750rpx;
 }
 
 .swipper image {
@@ -152,13 +154,171 @@
 
 .introduce-content view {
   margin-top: 38rpx;
-  color: #6a6a6a;
+  /* color: #6a6a6a; */
   font-size: 30rpx;
+  color: black;
   line-height: 45rpx;
-  text-indent: 2em;
+  text-indent: -2em;
   font-family: PingFangSC Regular;
 }
 
 .introduce-content view:first-child {
   margin-top: 0;
+}
+/* 参观指南样式(新增) */
+.visit{
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+.visit-title{
+  padding: 0 1.34em;
+}
+.sy-tupian {
+  height: 35vh;
+}
+
+.js-group {
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+  padding-left: 20rpx;
+  border-radius: 20rpx 0 0 20rpx;
+  background-color: #5887e0;
+  color: white;
+}
+
+
+.js-detail {
+  font-size: 25rpx;
+  box-sizing: border-box;
+  padding: 50rpx;
+  box-shadow: 0 0 10rpx 0 #aaa;
+  margin: 20rpx 0;
+}
+
+.dzpw {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dz {
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  padding: 50rpx;
+  width: 360rpx;
+  min-height: 150rpx;
+  border-radius: 20rpx;
+  box-shadow: 0px 0px 5px 0px #aaa;
+}
+
+.dz view {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.dz text {
+  display: flex;
+  flex-direction: column;
+  font-size: 25rpx;
+  color: #9da3c4;
+}
+.dztb {
+  margin-left: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.pw {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  width: 315rpx;
+  min-height: 150rpx;
+  border-radius: 20rpx 0rpx 0rpx 20rpx;
+  box-shadow: 0px 0px 5px 0px #aaa;
+}
+
+.pw view {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.pw text {
+  font-size: 25rpx;
+  color: #9da3c4;
+}
+
+.jc {
+  margin-top: 20rpx;
+  padding: 50rpx 0 0 50rpx;
+  width: 700rpx;
+  height: 160rpx;
+  box-shadow: 0px 0px 5px 0px #aaa;
+}
+
+.jc view {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.jc text {
+  font-size: 25rpx;
+  color: #9da3c4;
+}
+
+.kfsj {
+  margin-top: 20rpx;
+  padding: 50rpx 0 0 50rpx;
+  width: 100%;
+  height: 200rpx;
+  box-shadow: 0px 0px 5px 0px #aaa;
+}
+
+.kfsj view {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.kfsj text {
+  font-size: 25rpx;
+  color: #9da3c4;
+}
+image {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  margin: 90rpx 0 90rpx 50rpx;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  width: 650rpx;
+  height: 300rpx;
+  line-height: 450rpx;
+}
+
+.header image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.content {
+  margin-left: 50rpx;
+  margin-bottom: 90rpx;
+}
+
+.content text {
+  display: block;
+  color: #9d9d9d;
+  margin-top: 40rpx;
+}
+
+.bottom {
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+}
+
+.contact-phone{
+  text-align: center;
 }

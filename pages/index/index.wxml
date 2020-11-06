@@ -2,16 +2,28 @@
 <view class="index-page">
   <!-- banner -->
   <view class="swipper">
-    <image src="{{museumInfo.thumbnail}}" mode="scaleToFill"></image>
+    <image src="{{ museumInfo.thumbnail }}" mode="scaleToFill"></image>
   </view>
   <!-- 博物馆公告 -->
   <view class="index-notice">
-    <image src="../../assets/notice.png" style="height:36rpx;width:36rpx;"></image>
-    <view class="notice-title" bindtap="goToMore" data-url="/pages/notice/notice" data-recno="{{notice.recNo}}">
-      {{notice.title || '暂无公告'}}
+    <image
+      src="../../assets/notice.png"
+      style="height: 36rpx; width: 36rpx"
+    ></image>
+    <view
+      class="notice-title"
+      bindtap="goToMore"
+      data-url="/pages/notice/notice"
+      data-recno="{{ notice.recNo }}"
+    >
+      {{ notice.title || "暂无公告" }}
     </view>
-    <block wx:if="{{notice.length>0}}">
-      <view bindtap="goToMore" data-url="/pages/noticeList/noticeList" class="show-all">
+    <block wx:if="{{ notice.length > 0 }}">
+      <view
+        bindtap="goToMore"
+        data-url="/pages/noticeList/noticeList"
+        class="show-all"
+      >
         更多
         <image src="../../assets/back.png"></image>
       </view>
@@ -30,17 +42,21 @@
       </view> -->
     </view>
     <view class="live-show">
-      <block wx:for="{{liveShow}}" wx:key="index">
+      <block wx:for="{{ liveShow }}" wx:key="index">
         <view class="live-show-item">
           <!-- <view bindtap="goToMore" data-url="/pages/exhibitentity/exhibitentity" data-recno="{{item.recNo}}" class="live-show-item"> -->
-          <view bind:tap="preImg" data-image="{{item.sourceImg}}" class="live-show-item-img">
-            <image src="{{item.imgUrl}}" mode="scaleToFill"></image>
+          <view
+            bind:tap="preImg"
+            data-image="{{ item.sourceImg }}"
+            class="live-show-item-img"
+          >
+            <image src="{{ item.imgUrl }}" mode="scaleToFill"></image>
             <!-- <view>
               <text>{{item.browseNum}}</text>
               人观看
             </view> -->
           </view>
-          <view class="live-show-item-title">{{item.name}}</view>
+          <view class="live-show-item-title">{{ item.name }}</view>
         </view>
       </block>
     </view>
@@ -53,8 +69,67 @@
     </view>
     <view class="introduce-content">
       <view>
-        <rich-text class="" nodes="{{museumInfo.synopsis}}"></rich-text>
+        <rich-text class="rich-text" nodes="{{ museumInfo.synopsis }}"></rich-text>
       </view>
+    </view>
+  </view>
+  <!--参观指南(新增)-->
+  <!-- <view class="js-group">
+    <text>| 参观指南</text>
+  </view> -->
+  <view class="museum-introduce visit">
+    <view class="introduce-title visit-title">
+      <view class="vertical-line"></view>
+      参观指南
+    </view>
+    <view class="dzpw">
+      <view class="dz">
+        <view>
+          <view>地址</view>
+          <view class="dztb">
+            <image src="../../assets/home/attr.png"></image>
+          </view>
+        </view>
+        <text>{{ museumInfoThis.address }}</text>
+      </view>
+      <view class="dz">
+        <view>
+          <view>票务</view>
+          <view class="dztb">
+            <image src="../../assets/home/ticket.png"></image>
+          </view>
+        </view>
+        <text>{{ museumInfoThis.ticketRules }}</text>
+      </view>
+    </view>
+    <view class="dzpw">
+      <view class="dz">
+        <view>
+          <view>寄存</view>
+          <view class="dztb">
+            <image src="../../assets/home/store.png"></image>
+          </view>
+        </view>
+        <text>{{ museumInfoThis.deposit }}</text>
+      </view>
+      <view class="dz">
+        <view>
+          <view>咨询电话</view>
+          <view class="dztb">
+            <image src="../../assets/home/Tel.png"></image>
+          </view>
+        </view>
+        <text>{{museumInfoThis.phoneNo}}</text>
+      </view>
+    </view>
+    <view class="kfsj">
+      <view>
+        <view>开放时间</view>
+        <view class="dztb">
+          <image src="../../assets/home/openTime.png"></image>
+        </view>
+      </view>
+      <text>{{ museumInfoThis.openingHours }}</text>
     </view>
   </view>
 </view>
