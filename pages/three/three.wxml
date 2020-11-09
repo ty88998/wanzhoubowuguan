@@ -1,6 +1,6 @@
 <!-- 三维资源展示页面 -->
 <view class="three">
   <view class="web-view">
-    <web-view src="{{src}}" style="width: 500rpx;height: 500rpx;"></web-view>
+    <web-view src="{{src}}" style="width: 700rpx;height: 700rpx;"></web-view>
   </view>
 </view>
