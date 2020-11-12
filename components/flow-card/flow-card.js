@@ -19,41 +19,44 @@ Component({
         loginIntercept({ url: '/pages/topic/topic', recno })
       }
     },
-
+    /**
+     * 
+     * @param {*2020.11.12日变更，取消：点赞、收藏、数量模块！} e 
+     */
     //用户点赞/取消 
-    addLike(e) {
-      const { touristNo } = appInst.globalData
-      if (touristNo) {
-        const { itemData } = this.data
-        const { recno } = e.currentTarget.dataset
-        addLikeHistory({ recNo: recno, touristNo })
-          .then(res => {
-            itemData.pointRatio = res.pointRatio
-            itemData.isLike = !itemData.isLike
-            this.setData({ itemData })
-          })
-      } else {
-        loginIntercept()
-      }
-    },
+    // addLike(e) {
+    //   const { touristNo } = appInst.globalData
+    //   if (touristNo) {
+    //     const { itemData } = this.data
+    //     const { recno } = e.currentTarget.dataset
+    //     addLikeHistory({ recNo: recno, touristNo })
+    //       .then(res => {
+    //         itemData.pointRatio = res.pointRatio
+    //         itemData.isLike = !itemData.isLike
+    //         this.setData({ itemData })
+    //       })
+    //   } else {
+    //     loginIntercept()
+    //   }
+    // },
 
     // 用户收藏/取消
-    addCollect(e) {
-      const { touristNo } = appInst.globalData
-      if (touristNo) {
-        const { itemData } = this.data
-        const { recno } = e.currentTarget.dataset
-        addCollectHistory({ recNo: recno, touristNo })
-          .then(() => {
-            itemData.isCollect = !itemData.isCollect
-            this.setData({
-              itemData
-            })
-          })
-      } else {
-        loginIntercept()
-      }
-    },
+    // addCollect(e) {
+    //   const { touristNo } = appInst.globalData
+    //   if (touristNo) {
+    //     const { itemData } = this.data
+    //     const { recno } = e.currentTarget.dataset
+    //     addCollectHistory({ recNo: recno, touristNo })
+    //       .then(() => {
+    //         itemData.isCollect = !itemData.isCollect
+    //         this.setData({
+    //           itemData
+    //         })
+    //       })
+    //   } else {
+    //     loginIntercept()
+    //   }
+    // },
     imgLoadToPage() {
       const query = wx.createSelectorQuery().in(this)
       query.select('#card-item').boundingClientRect(rect => {

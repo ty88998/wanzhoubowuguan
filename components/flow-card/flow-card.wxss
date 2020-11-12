@@ -4,6 +4,7 @@
   white-space: nowrap;
 }
 
+/* 展览模块中item样式 */
 .show-item {
   overflow: hidden;
   background: #fff;

@@ -12,7 +12,7 @@ Page({
    */
   data: {
     current: 0,
-    indexInfo: {},
+    indexInfo: {},//三峡移民纪念馆-唐俑珍赏详细资料
     playStatus: false,
     scenes: [],
     mp3Index: 0,
@@ -42,7 +42,7 @@ Page({
     const indexInfo = await toProjectDetail({ recNo, touristNo });
     this.setData({ indexInfo });
     this._getSceneData(indexInfo.recNo);
-    this._setHeight(this.data.current);
+    // this._setHeight(this.data.current);
   },
 
   async _getSceneData(projectNo) {
@@ -119,21 +119,21 @@ Page({
       .boundingClientRect(callback)
       .exec();
   },
-  _setHeight(cur) {
-    let swiper_h = 0;
-    this._get_wxml(`.swiper-item${cur}>.scene`, (rects) => {
-      for (let i = 0; i < rects.length; i++) {
-        swiper_h += rects[i].height + 40;
-      }
-      const screenH = wx.getSystemInfoSync().windowHeight;
-      if (swiper_h < screenH) {
-        swiper_h = screenH;
-      }
-      this.setData({
-        swiper_h,
-      });
-    });
-  },
+  // _setHeight(cur) {
+  //   let swiper_h = 0;
+  //   this._get_wxml(`.swiper-item${cur}>.scene`, (rects) => {
+  //     for (let i = 0; i < rects.length; i++) {
+  //       swiper_h += rects[i].height + 40;
+  //     }
+  //     const screenH = wx.getSystemInfoSync().windowHeight;
+  //     if (swiper_h < screenH) {
+  //       swiper_h = screenH;
+  //     }
+  //     this.setData({
+  //       swiper_h,
+  //     });
+  //   });
+  // },
   changeItem(e) {
     const { current } = e.detail;
     this.setData({

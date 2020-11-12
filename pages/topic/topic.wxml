@@ -1,48 +1,45 @@
-<!--pages/topic/topic.wxml-->
+<!-- pages/topic/topic.wxml -->
 <view class="container">
-  <view class="nextPage" wx:if="{{nextPage}}">
-    <view class="nextPage-1"></view>
-    <view class="nextPage-2"></view>
-    <text class="nextPage-textDetail">滑动翻页</text>
-  </view>
+  <view class="nextPage" wx:if="{{nextPage}}"></view>
   <view class="filterbg" style="background-image: url({{indexInfo.thumbnail}});"></view>
   <view class="topic">
-  <swiper current="{{current}}" bindchange="changeItem" interval="2000" duration="1000" style="height: {{swiper_h}}px;">
-    <swiper-item class="swiper-item0">
-      <view class="scene">
-        <view class="topic-header">
-          <text class="topic-name">{{indexInfo.name}}</text>
-          <text class="topic-region">{{indexInfo.region}}</text>
-        </view>
-        <view class="topic-content">
-          <text>{{indexInfo.preface}}</text>
-          <view class="toscenes">
-            <!-- <image class="toscenes-img" src="../../assets/exhibition/jinru.png"></image> -->
+    <!-- <view current="{{current}}" bindchange="changeItem" interval="2000" duration="1000" style="height: {{swiper_h}}px;"> -->
+    <view bindchange="changeItem">
+      <view class="swiper-item0">
+        <view class="scene">
+          <view class="topic-header">
+            <text class="topic-name">{{indexInfo.name}}</text>
+            <text class="topic-region">{{indexInfo.region}}</text>
+          </view>
+          <view class="topic-content">
+            <text>{{indexInfo.preface}}</text>
+            <view class="toscenes"></view>
           </view>
         </view>
       </view>
-    </swiper-item>
-    <swiper-item class="swiper-item1">
-      <block wx:for="{{scenes}}" wx:key="index">
-        <view class="scene">
-          <view class="scene-header">
-            <text>{{item.name}}</text>
-          </view>
-          <view class="scene-synopsis">
-            <text>{{item.synopsis}}</text>
-          </view>
-          <view class="collections">
-            <view class="collection-item" wx:for="{{item.collections}}" wx:for-item="collection" wx:key="*this">
-              <text>{{collection.name}}</text> -- <text>{{collection.name}}</text>
+      <view class="swiper-item1">
+        <block wx:for="{{scenes}}" wx:key="index">
+          <view class="scene scene-many">
+            <view class="scene-header">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="scene-synopsis">
+              <text>{{item.synopsis}}</text>
+            </view>
+            <view class="collections">
+              <view class="collection-item" wx:for="{{item.collections}}" wx:for-item="collection" wx:key="*this">
+                <text>{{collection.name}}</text>
+                --
+                <text>{{collection.name}}</text>
+              </view>
+            </view>
+            <view class="goToDetail" bindtap="toSceneCollect" data-recno="{{item.recNo}}">
+              <text>详情</text>
+              <image class="triangle" src="../../assets/right.png"></image>
             </view>
           </view>
-          <view class="goToDetail" bindtap="toSceneCollect" data-recno="{{item.recNo}}">
-            <text>详情</text>
-            <image class="triangle" src="../../assets/right.png"></image>
-          </view>
-        </view>
-      </block>
-    </swiper-item>
-    </swiper>
+        </block>
+      </view>
+    </view>
   </view>
 </view>

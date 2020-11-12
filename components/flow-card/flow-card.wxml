@@ -1,7 +1,8 @@
 <view id="card-item" class="show-item">
   <image style="width:101%" src="{{itemData.thumbnail}}" mode="widthFix" bindload="imgLoadToPage" bindtap="goToPage" data-display="{{itemData.display}}" data-recno="{{itemData.dataNo||itemData.recNo}}"></image>
   <view class="ellipsis show-item-name">{{itemData.region+'—'+itemData.name}}</view>
-  <view class="show-option">
+  <!--2020.11.12日变更，取消：点赞、收藏、数量模块！-->
+  <!-- <view class="show-option">
     <view class="show-option-view" data-recno="{{itemData.recNo}}" data-index="{{index}}" bindtap="addLike">
       <image style="height:26rpx;width:26rpx;margin-right:12rpx" src="{{itemData.isLike?'../../assets/exhibition/likes.png':'../../assets/exhibition/like.png'}}"></image>
       {{itemData.pointRatio}}
@@ -11,5 +12,5 @@
       {{itemData.views}}
     </view>
     <image style="height:27rpx;width:30rpx" src="{{itemData.isCollect?'../../assets/exhibition/collects.png':'../../assets/exhibition/collect.png'}}" data-recno="{{itemData.recNo}}" bindtap="addCollect"></image>
-  </view>
+  </view> -->
 </view>
