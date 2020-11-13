@@ -1,8 +1,14 @@
 <view class="container">
     <view class="bg" style="background-image: url({{collectionItem.thumbnail}});"></view>
     <view class="topic">
+        <view class="arrow left-arrows" bindtap="preCollection" wx:if="{{collectionList.length>1}}">
+            <image src="../../assets/left-arrow.png"></image>
+        </view>
+        <view class="arrow right-arrows" bindtap="nextCollection" wx:if="{{collectionList.length>1}}">
+            <image src="../../assets/right-arrow.png"></image>
+        </view>
         <view class="topic-head">
-            <swiper class="topic-swiper" interval="2000" duration="1000" previous-margin="86rpx" next-margin="382rpx" circular bindchange="swiperChange">
+            <swiper class="topic-swiper" interval="2000" duration="1000" current='{{currentItem}}' previous-margin="86rpx" next-margin="382rpx" circular bindchange="swiperChange">
                 <!-- <block wx:if="{{indexInfo.display==2}}"> -->
                     <block wx:for="{{collectionList}}" wx:key="index">
                         <swiper-item class="topic-swiper-item">
