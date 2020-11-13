@@ -16,6 +16,7 @@ Page({
     playStatus: false,
     scenes: [],
     mp3Index: 0,
+    mp3Arr:[],
     nextPage:true
   },
 
@@ -24,62 +25,65 @@ Page({
    */
   async onLoad(options) {
     await this._getIndexData(options.recno);
-    await this.choosePlay();
+    await this.totalMp3Url();
+    await this.playAudio();
   },
   onUnload() {
     this._leaveAndStopMp3();
   },
   onShow(){
-    this.choosePlay();
+    this.playAudio();
   },
   onHide(){
     this._leaveAndStopMp3();
-    this.setData({mp3Index:0})
+    this.setData({mp3Index:0});
   },
   async _getIndexData(recNo) {
-    // 获取专题展信息
+    // 获取专题展信息(唐俑珍赏)
     let touristNo = appInst.globalData.touristNo;
     const indexInfo = await toProjectDetail({ recNo, touristNo });
     this.setData({ indexInfo });
-    this._getSceneData(indexInfo.recNo);
-    // this._setHeight(this.data.current);
+    await this._getSceneData(indexInfo.recNo);
   },
 
   async _getSceneData(projectNo) {
-    // 获取专题展场景数据
+    // 获取专题展场景数据(武吏 、武士俑  奴仆俑   骑马乐俑)
     const sceneData = await getSceneInfos({ projectNo });
     let scenes = sceneData.data;
+    this.setData({ scenes });
     scenes.map((scene) => {
-      // 获取场景下文物数据
+      // 获取场景下文物数据(具体到每个个体)
       getSceneCollect({ sceneNo: scene.recNo }).then((res) => {
         scene.collections = res.data;
         this.setData({ scenes });
       });
     });
   },
-  //播放序言语音
-  playAudio(audio) {
+  //2020.11.13新增，合并四条语音
+  totalMp3Url(){
+    const { scenes,indexInfo } = this.data;
+    let mp3Arr = [];
+    mp3Arr.push(indexInfo.prefaceMp3);
+    scenes.forEach(value=>{
+      mp3Arr.push(value.mp3Url);
+    })
+    this.setData({mp3Arr});
+  },
+  //按顺序播放共 4条语音
+  playAudio() {
     this._leaveAndStopMp3();
     const that = this;
-    let { mp3Index } = this.data;
+    let { mp3Index,mp3Arr } = this.data;
     innerAudioContext = wx.createInnerAudioContext();
-    if (typeof audio == "string") {
-      innerAudioContext.src = audio;
-      setTimeout(() => {
-        innerAudioContext.play();
-      }, 1000);
-      innerAudioContext.onEnded(() => {
-        that._leaveAndStopMp3();
-      });
-    } else {
-      if (mp3Index < 3) {
-        innerAudioContext.src = audio[mp3Index].mp3Url;
+    if(mp3Arr.length>0) {
+      if (mp3Index < 4) {
+        innerAudioContext.src = mp3Arr[mp3Index];
         setTimeout(() => {
           innerAudioContext.play();
         }, 1000);
         this.setData({ mp3Index: mp3Index + 1 });
         innerAudioContext.onEnded(() => {
-          that.playAudio(audio);
+          that.playAudio();
         });
       } else {
         innerAudioContext.onEnded(() => {
@@ -88,16 +92,6 @@ Page({
         });
       }
     }
-  },
-  //判断传入字符串或者数组
-  async choosePlay() {
-    let { indexInfo, scenes, current } = this.data;
-      if (current === 0 && 'prefaceMp3' in indexInfo)await this.playAudio(indexInfo.prefaceMp3);
-      else if(current===1){
-        await this.playAudio(scenes);
-      }else{
-        this._leaveAndStopMp3();
-      }
   },
   //离开或关闭页面，停止播放
   _leaveAndStopMp3() {
@@ -119,34 +113,4 @@ Page({
       .boundingClientRect(callback)
       .exec();
   },
-  // _setHeight(cur) {
-  //   let swiper_h = 0;
-  //   this._get_wxml(`.swiper-item${cur}>.scene`, (rects) => {
-  //     for (let i = 0; i < rects.length; i++) {
-  //       swiper_h += rects[i].height + 40;
-  //     }
-  //     const screenH = wx.getSystemInfoSync().windowHeight;
-  //     if (swiper_h < screenH) {
-  //       swiper_h = screenH;
-  //     }
-  //     this.setData({
-  //       swiper_h,
-  //     });
-  //   });
-  // },
-  changeItem(e) {
-    const { current } = e.detail;
-    this.setData({
-      current,mp3Index:0
-    });
-    this._setHeight(current);
-    this.choosePlay();
-  },
-  onPullDownRefresh: function () {},
-  //触摸时隐藏提醒翻页箭头
-  // touchStart(){
-  //   this.setData({
-  //     nextPage:false
-  //   })
-  // }shi
 });
