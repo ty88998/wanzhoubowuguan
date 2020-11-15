@@ -1,7 +1,8 @@
 <!-- pages/topic/topic.wxml -->
 <view class="container">
   <view class="nextPage" wx:if="{{nextPage}}"></view>
-  <view class="filterbg" style="background-image: url({{indexInfo.thumbnail}});"></view>
+  <!-- <view class="filterbg" style="background-image: url({{indexInfo.thumbnail}});"></view> -->
+  <view class="filterbg" style="background-image: url('https://integrationplatform.oss-cn-chengdu.aliyuncs.com/bg_img/2327078951f1f769f7a9a26bda1af7b.png');"></view>
   <view class="topic">
     <!-- <view current="{{current}}" bindchange="changeItem" interval="2000" duration="1000" style="height: {{swiper_h}}px;"> -->
     <view bindchange="changeItem">
@@ -9,24 +10,31 @@
         <view class="scene">
           <view class="topic-header">
             <text class="topic-name">{{indexInfo.name}}</text>
-            <text class="topic-region">{{indexInfo.region}}</text>
+            <text class="topic-region">——{{indexInfo.region}}</text>
+          </view>
+          <view class="topic-preface">
+            <image class="preface-img" src="../../assets/preface.png"></image>
+            <text>序言</text>
           </view>
           <view class="topic-content">
             <text>{{indexInfo.preface}}</text>
-            <view class="toscenes"></view>
           </view>
         </view>
       </view>
       <view class="swiper-item1">
         <block wx:for="{{scenes}}" wx:key="index">
           <view class="scene scene-many">
-            <view class="scene-header">
+            <view class="topic-preface">
+              <image class="preface-img" src="../../assets/preface.png"></image>
               <text>{{item.name}}</text>
             </view>
-            <view class="scene-synopsis">
+            <!-- <view class="scene-header">
+              <text>{{item.name}}</text>
+            </view> -->
+            <view class="scene-synopsis topic-content">
               <text>{{item.synopsis}}</text>
             </view>
-            <view class="collections">
+            <view class="collections topic-content">
               <view class="collection-item" wx:for="{{item.collections}}" wx:for-item="collection" wx:key="*this">
                 <text>{{collection.name}}</text>
                 --
@@ -35,7 +43,7 @@
             </view>
             <view class="goToDetail" bindtap="toSceneCollect" data-recno="{{item.recNo}}">
               <text>详情</text>
-              <image class="triangle" src="../../assets/right.png"></image>
+              <image class="triangle" src="../../assets/right2.png"></image>
             </view>
           </view>
         </block>

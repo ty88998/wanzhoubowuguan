@@ -59,7 +59,9 @@ Page({
       });
     });
   },
-  //2020.11.13新增，合并四条语音
+  /**
+   * 2020.11.13新增，合并四条语音
+   */
   totalMp3Url(){
     const { scenes,indexInfo } = this.data;
     let mp3Arr = [];

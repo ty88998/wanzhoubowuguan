@@ -24,7 +24,6 @@
   left: 0;
   bottom: 0;
   z-index: -1;
-  filter: blur(4px);
 }
 .topic {
   padding: 0 1.5em 1.5em;
@@ -32,46 +31,64 @@
 .topic-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
+  text-align: right;
   line-height: 2em;
 }
 .topic-name {
-  font-size: 40rpx;
+  text-align: center;
+  font-size: 36rpx;
   font-weight: bolder;
-  font-size-adjust: 0.8;
+  /* font-size-adjust: 0.8; */
 }
 .topic-region {
-  font-size: 32rpx;
-  font-size-adjust: 0.45;
+  font-size: 36rpx;
+  font-weight: bold;
+  /* font-size-adjust: 0.45; */
+}
+.topic-preface{
+  position: relative;
+  margin: 30rpx 0 40rpx;
+}
+.preface-img{
+  position: absolute;
+  left: -1.5em;
+  top: 0;
+  height: 76rpx;
+  width: 14rpx;
+}
+.topic-preface text{
+  font-size: 60rpx;
+  vertical-align: bottom;
 }
 .topic-content{
   text-indent: 2em;
-  line-height: 1.5;
-}
-.toscenes{
-  height:1.5em;
+  font-size: 36rpx;
+  line-height: 63rpx;
+  color: #464646;
+  text-shadow: 0rpx 0rpx 42rpx #a67639;
 }
 .scene{
-  margin-top: 1.5em;
+  margin-top: 0.8em;
   position: relative;
-  border-bottom: 1rpx solid #8b8b8b
 }
-.scene-many{
+/* .scene-many{
   margin-top: 0.5em;
   padding-bottom: 0.5em;
-}
+} */
 .goToDetail{
   position: absolute;
   right: 0;
-  bottom: 0.3em;
-  color:#fff;
+  top: 0;
+  color:gray;
   width: 60rpx;
   height: 90rpx;
   text-align: left;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  text-shadow: 0 0 20rpx #a67639;
 }
 .goToDetail:active{
   transform: scale(1.2) translateX(4rpx);

@@ -1,5 +1,6 @@
 <view id="card-item" class="show-item">
-  <image style="width:101%" src="{{itemData.thumbnail}}" mode="widthFix" bindload="imgLoadToPage" bindtap="goToPage" data-display="{{itemData.display}}" data-recno="{{itemData.dataNo||itemData.recNo}}"></image>
+  <image class="item-image" src="{{itemData.thumbnail}}" mode="widthFix" 
+  bindload="imgLoadToPage" bindtap="goToPage" data-display="{{itemData.display}}" data-recno="{{itemData.dataNo||itemData.recNo}}"></image>
   <view class="ellipsis show-item-name">{{itemData.region+'—'+itemData.name}}</view>
   <!--2020.11.12日变更，取消：点赞、收藏、数量模块！-->
   <!-- <view class="show-option">
