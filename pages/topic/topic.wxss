@@ -43,7 +43,7 @@
   /* font-size-adjust: 0.8; */
 }
 .topic-region {
-  font-size: 36rpx;
+  font-size: 26rpx;
   font-weight: bold;
   /* font-size-adjust: 0.45; */
 }
@@ -67,7 +67,7 @@
   font-size: 36rpx;
   line-height: 63rpx;
   color: #464646;
-  text-shadow: 0rpx 0rpx 42rpx #a67639;
+  /* text-shadow: 0rpx 0rpx 42rpx #a67639; */
 }
 .scene{
   margin-top: 0.8em;
@@ -88,7 +88,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  text-shadow: 0 0 20rpx #a67639;
+  /* text-shadow: 0 0 20rpx #a67639; */
 }
 .goToDetail:active{
   transform: scale(1.2) translateX(4rpx);

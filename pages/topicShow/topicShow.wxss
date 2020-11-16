@@ -1,7 +1,7 @@
 .container{
     position: relative;
 }
-.bg{
+/* .bg{
     width: 100%;
     min-height: 100vh;
     position: fixed;
@@ -11,11 +11,12 @@
     z-index: -1;
     filter: blur(4px);
     background-size: 100% 100%;
-}
+} */
 .topic {
     padding: 1em 0;
     position: relative;
     width: 750rpx;
+    background: #d9d5c5;
 }
 /* 左边箭头样式 */
 .arrow{
@@ -118,7 +119,6 @@
 
 .topic-content {
     margin-top: 80rpx;
-    color: #dddddd;
     box-sizing: border-box;
     padding: 0 50rpx 50rpx;
 }
@@ -129,8 +129,6 @@
     font-size: 40rpx;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
-    /* color: rgba(0, 0, 0, 1); */
-    color: #ffffff;
     line-height: 40rpx;
 }
 
@@ -140,8 +138,7 @@
     font-size: 30rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    /* color: #000; */
-    color: #ffffff;
+    color:#464646;
     line-height: 50rpx;
 }
 

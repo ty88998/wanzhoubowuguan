@@ -1,5 +1,5 @@
 <view class="container">
-    <view class="bg" style="background-image: url({{collectionItem.thumbnail}});"></view>
+    <!-- <view class="bg" style="background-image: url({{collectionItem.thumbnail}});"></view> -->
     <view class="topic">
         <view class="arrow left-arrows" bindtap="preCollection" wx:if="{{collectionList.length>1}}">
             <image src="../../assets/left-arrow.png"></image>

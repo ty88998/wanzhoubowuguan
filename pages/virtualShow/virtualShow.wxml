@@ -1,21 +1,24 @@
-<view class="virtual-show">
-    <image bind:tap="preImg" class="virtual-show-img" src="{{scenes.imgURL}}" mode="aspectFit" />
-</view>
-<view class="options-show">
-    <view bind:tap="payMp3" class="option-btn" data-mp3url="{{scenes.mp3Url||''}}">
-        <image src="../../assets/show/voice.png" alt="" />
-        <view class="option-font">语音播报</view>
+<view class="container">
+    <view class="virtual-show">
+    <!--透明背景色图片-->
+        <!-- <image bind:tap="preImg" class="virtual-show-img" src="{{indexInfo.thumbnail}}" mode="aspectFit" /> -->
+        <image bind:tap="preImg" class="virtual-show-img" src="{{scenes.imgURL}}" mode="aspectFit" />
     </view>
-
-    <view class="option-line" />
-    <view bind:tap="goTo3D" class="option-btn" data-recno="{{scenes.recNo}}" data-name="{{scenes.name}}">
-        <image src="../../assets/show/emulate3D.png" alt="" />
-        <view class="option-font">3D展示</view>
+    <view class="options-show">
+        <view bind:tap="payMp3" class="option-btn" data-mp3url="{{scenes.mp3Url||''}}">
+            <image src="../../assets/show/voice.png" alt="" />
+            <view class="option-font">语音播报</view>
+        </view>
+        <view class="option-line" />
+        <view bind:tap="goTo3D" class="option-btn" data-recno="{{scenes.recNo}}" data-name="{{scenes.name}}">
+            <image src="../../assets/show/emulate3D.png" alt="" />
+            <view class="option-font">3D展示</view>
+        </view>
     </view>
-</view>
-<view class="show-content">
-    <view class="show-title">{{scenes.name}}</view>
-    <view class="show-body">{{scenes.synopsis}}</view>
-    <view wx:if="{{indexInfo.knowledge}}" class="show-title red">**知识链接**</view>
-    <view wx:if="{{indexInfo.knowledge}}" class="show-body">{{indexInfo.knowledge}}</view>
+    <view class="show-content">
+        <view class="show-title">{{scenes.name}}</view>
+        <view class="show-body">{{scenes.synopsis}}</view>
+        <view wx:if="{{indexInfo.knowledge}}" class="show-title red">**知识链接**</view>
+        <view wx:if="{{indexInfo.knowledge}}" class="show-body">{{indexInfo.knowledge}}</view>
+    </view>
 </view>

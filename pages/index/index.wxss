@@ -37,7 +37,7 @@
 /* 展览模块样式 */
 .show-container {
   padding: 22rpx 0 0 21rpx;
-  background-color: #fff;
+  background-color:#d9d5c5;
   overflow: hidden;
 }
 
@@ -134,7 +134,7 @@
 
 .museum-introduce {
   margin-top: 26rpx;
-  background: #fff;
+  background:#d9d5c5;
   box-sizing: border-box;
   padding: 1em 1.5em;
 }
@@ -150,6 +150,7 @@
 .introduce-content {
   box-sizing: border-box;
   padding-top: 1em;
+  color: #464646;
 }
 
 .introduce-content view {
@@ -221,51 +222,14 @@
   display: flex;
   flex-direction: column;
   font-size: 25rpx;
-  color: #9da3c4;
+  /* color: #9da3c4; */
+  color: #3e4b81;
 }
 .dztb {
   margin-left: 20rpx;
   width: 40rpx;
   height: 40rpx;
 }
-.pw {
-  margin-top: 20rpx;
-  padding: 20rpx;
-  box-sizing: border-box;
-  width: 315rpx;
-  min-height: 150rpx;
-  border-radius: 20rpx 0rpx 0rpx 20rpx;
-  box-shadow: 0px 0px 5px 0px #aaa;
-}
-
-.pw view {
-  display: flex;
-  margin-bottom: 10rpx;
-}
-
-.pw text {
-  font-size: 25rpx;
-  color: #9da3c4;
-}
-
-.jc {
-  margin-top: 20rpx;
-  padding: 50rpx 0 0 50rpx;
-  width: 700rpx;
-  height: 160rpx;
-  box-shadow: 0px 0px 5px 0px #aaa;
-}
-
-.jc view {
-  display: flex;
-  margin-bottom: 10rpx;
-}
-
-.jc text {
-  font-size: 25rpx;
-  color: #9da3c4;
-}
-
 .kfsj {
   margin-top: 20rpx;
   padding: 50rpx 0 0 50rpx;
@@ -281,7 +245,7 @@
 
 .kfsj text {
   font-size: 25rpx;
-  color: #9da3c4;
+  color: #3e4b81;
 }
 image {
   width: 100%;

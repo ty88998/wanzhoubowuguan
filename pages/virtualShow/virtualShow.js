@@ -30,7 +30,6 @@ Page({
     try {
       let {indexInfo, scenes} = this.data
       if (status) {
-        
         indexInfo = await toProjectDetail({ recNo, touristNo })
         scenes = await getCollection({ recNo: indexInfo.collectNo })
       } else {
@@ -41,7 +40,7 @@ Page({
       this.setData({indexInfo, scenes})
     } catch (error) {
       console.log('toProjectDetail error: ', error)
-    }
+    } 
   },
   payMp3(e) {
     const {mp3url} = e.currentTarget.dataset

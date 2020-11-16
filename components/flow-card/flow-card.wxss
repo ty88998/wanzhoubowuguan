@@ -2,21 +2,21 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background: #fff;
+  /* background: #fff; */
 }
 
 /* 展览模块中item样式 */
 .show-item {
   overflow: hidden;
   border-radius: 15rpx;
-  font-size: 20rpx;
-  margin-bottom: 20rpx;
-  font-family: YouYuan Regular;
+  font-size: 24rpx;
+  /* font-family: YouYuan Regular; */
   font-weight: bold;
   line-height: 35rpx;
   text-align: center;
   box-sizing: border-box;
-  box-shadow: 0 0 10rpx gray;
+  margin-bottom: 60rpx;
+  /* box-shadow: 0 0 10rpx gray; */
 }
 
 .show-item-name {
