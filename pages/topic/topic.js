@@ -6,6 +6,7 @@ import {
 } from "../../api/smallProgram";
 const appInst = getApp();
 let innerAudioContext;
+let timer;
 Page({
   /**
    * 页面的初始数据
@@ -25,7 +26,6 @@ Page({
    */
   async onLoad(options) {
     await this._getIndexData(options.recno);
-    await this.totalMp3Url();
     await this.playAudio();
   },
   onUnload() {
@@ -36,7 +36,7 @@ Page({
   },
   onHide(){
     this._leaveAndStopMp3();
-    this.setData({mp3Index:0});
+    // this.setData({mp3Index:0});
   },
   async _getIndexData(recNo) {
     // 获取专题展信息(唐俑珍赏)
@@ -61,52 +61,77 @@ Page({
   },
   /**
    * 2020.11.13新增，合并四条语音
+   * 2020.11.17变更，单条语音
    */
-  totalMp3Url(){
-    const { scenes,indexInfo } = this.data;
-    let mp3Arr = [];
-    mp3Arr.push(indexInfo.prefaceMp3);
-    scenes.forEach(value=>{
-      mp3Arr.push(value.mp3Url);
-    })
-    this.setData({mp3Arr});
-  },
+  // totalMp3Url(){
+  //   const { scenes,indexInfo } = this.data;
+  //   let mp3Arr = [];
+  //   mp3Arr.push(indexInfo.prefaceMp3);
+  //   scenes.forEach(value=>{
+  //     mp3Arr.push(value.mp3Url);
+  //   })
+  //   this.setData({mp3Arr});
+  // },
   //按顺序播放共 4条语音
+  // playAudio() {
+  //   this._leaveAndStopMp3();
+  //   const that = this;
+  //   let { mp3Index,mp3Arr } = this.data;
+  //   innerAudioContext = wx.createInnerAudioContext();
+  //   if(mp3Arr.length>0) {
+  //     if (mp3Index < 4) {
+  //       innerAudioContext.src = mp3Arr[mp3Index];
+  //       setTimeout(() => {
+  //         innerAudioContext.play();
+  //       }, 1000);
+  //       this.setData({ mp3Index: mp3Index + 1 });
+  //       innerAudioContext.onEnded(() => {
+  //         that.playAudio();
+  //       });
+  //     } else {
+  //       innerAudioContext.onEnded(() => {
+  //         that.setData({ mp3Index: 0 });
+  //         that._leaveAndStopMp3();
+  //       });
+  //     }
+  //   }
+  // },
   playAudio() {
     this._leaveAndStopMp3();
     const that = this;
-    let { mp3Index,mp3Arr } = this.data;
+    const { indexInfo } = this.data;
     innerAudioContext = wx.createInnerAudioContext();
-    if(mp3Arr.length>0) {
-      if (mp3Index < 4) {
-        innerAudioContext.src = mp3Arr[mp3Index];
-        setTimeout(() => {
-          innerAudioContext.play();
-        }, 1000);
-        this.setData({ mp3Index: mp3Index + 1 });
-        innerAudioContext.onEnded(() => {
-          that.playAudio();
-        });
-      } else {
-        innerAudioContext.onEnded(() => {
-          that.setData({ mp3Index: 0 });
-          that._leaveAndStopMp3();
-        });
-      }
-    }
+    innerAudioContext.src = indexInfo.prefaceMp3;
+    timer = setTimeout(() => {
+      innerAudioContext.play();
+    }, 1000);
+    innerAudioContext.onEnded(() => {
+      that._leaveAndStopMp3();
+    });
   },
   //离开或关闭页面，停止播放
   _leaveAndStopMp3() {
     if(innerAudioContext){
+      clearTimeout(timer);
       innerAudioContext.stop();
       innerAudioContext.destroy();
     }
   },
   // 跳转到场景文物页面
   toSceneCollect(e) {
-    const { recno } = e.currentTarget.dataset;
+    const { recno,index } = e.currentTarget.dataset;
+    const { scenes } = this.data;
+    const { collections } = scenes[index];
+    let params = {};
+    params = {
+      list:collections.map(value=>value.name),
+      mp3Url:scenes[index].mp3Url,
+      name:scenes[index].name,
+      synopsis:scenes[index].synopsis,
+      recno
+    }
     wx.navigateTo({
-      url: `/pages/topicShow/topicShow?recno=${recno}`,
+      url: `/pages/topicShow/topicShow?params=${JSON.stringify(params)}`,
     });
   },
   _get_wxml(className, callback) {

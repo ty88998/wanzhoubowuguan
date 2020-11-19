@@ -17,6 +17,8 @@
     position: relative;
     width: 750rpx;
     background: #d9d5c5;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 /* 左边箭头样式 */
 .arrow{
@@ -140,6 +142,11 @@
     font-weight: 400;
     color:#464646;
     line-height: 50rpx;
+}
+.content-body2{
+    text-indent: 0;
+    margin-top: 0.5em;
+    text-align: center;
 }
 
 .content-time {

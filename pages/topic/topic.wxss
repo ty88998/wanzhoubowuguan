@@ -67,16 +67,11 @@
   font-size: 36rpx;
   line-height: 63rpx;
   color: #464646;
-  /* text-shadow: 0rpx 0rpx 42rpx #a67639; */
 }
 .scene{
   margin-top: 0.8em;
   position: relative;
 }
-/* .scene-many{
-  margin-top: 0.5em;
-  padding-bottom: 0.5em;
-} */
 .goToDetail{
   position: absolute;
   right: 0;
@@ -88,7 +83,6 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /* text-shadow: 0 0 20rpx #a67639; */
 }
 .goToDetail:active{
   transform: scale(1.2) translateX(4rpx);

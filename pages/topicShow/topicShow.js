@@ -4,7 +4,8 @@ import { getMuseumsInfo } from '../../api/indexInfo'
 import { loginIntercept } from '../../utils/loginUtils'
 
 const appInst = getApp()
-
+let innerAudioContext;
+let timer;
 Page({
 
   /**
@@ -14,18 +15,54 @@ Page({
     collectionList: [],
     currentItem: 0,
     contentTitle: '',
-    contentBody: ''
+    contentBody: '',
+    //传过来的json对象
+    params:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    // const museumInfo = await getMuseumsInfo()
-    // this.setData({ museumInfo })
-    this._getIndexData(options.recno)
+    const params = JSON.parse(options.params);
+    this.setData({params})
+    this._getIndexData(params.recno)
+    this.playAudio();
   },
-
+  onUnload() {
+    this._leaveAndStopMp3();
+  },
+  onShow(){
+    this.playAudio();
+  },
+  onHide(){
+    this._leaveAndStopMp3();
+  },
+  /**
+   * 
+   * @param {*} 11.19日新增--语音播放 
+   */
+  playAudio() {
+    this._leaveAndStopMp3();
+    const that = this;
+    const {params} = this.data;
+    innerAudioContext = wx.createInnerAudioContext();
+    innerAudioContext.src = params.mp3Url;
+    timer = setTimeout(() => {
+      innerAudioContext.play();
+    }, 500);
+    innerAudioContext.onEnded(() => {
+      that._leaveAndStopMp3();
+    });
+  },
+   //离开或关闭页面，停止播放
+  _leaveAndStopMp3() {
+    if(innerAudioContext){
+      clearTimeout(timer);
+      innerAudioContext.stop();
+      innerAudioContext.destroy();
+    }
+  },
   // 获取展览信息
   async _getIndexData(recno) {
     let { collectionList, currentItem } = this.data

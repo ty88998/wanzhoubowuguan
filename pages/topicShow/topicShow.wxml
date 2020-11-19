@@ -33,9 +33,13 @@
             <!-- <image class="topic-head-bg" src="{{museumInfo.thumbnail}}" mode="scaleToFill"></image> -->
         </view>
         <view class="topic-content">
-            <view class="content-title">{{collectionItem.name}}</view>
-            <!-- <view class="content-time">{{contentTime}}</view> -->
-            <view class="content-body">{{collectionItem.lectures}}</view>
+            <view class="content-title">{{params.name}}</view>
+            <view class="content-body">{{params.synopsis}}</view>
+            <view class="content-body content-body2" wx:for="{{params.list}}" wx:key="index">
+                <text>{{item}}</text>
+                --
+                <text>{{item}}</text>
+              </view>
         </view>
     </view>
 </view>

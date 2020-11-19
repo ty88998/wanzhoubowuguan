@@ -1,8 +1,7 @@
 //app.js
 import { baseApi, getItem, setItem } from './utils/store'
 
-App.baseApi = baseApi
-
+App.baseApi = baseApi;
 App({
   onLaunch() {
     wx.getSetting({
