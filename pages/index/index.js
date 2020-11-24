@@ -120,5 +120,5 @@ Page({
       current: imageUrl,
       urls: sourceImage
     })
-  },
+  }
 })
