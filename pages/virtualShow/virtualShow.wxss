@@ -1,19 +1,55 @@
 /* pages/virtualShow/virtualShow.wxss */
 /* 容器 */
-.container{
+.container {
     width: 750rpx;
     min-height: 100vh;
     height: 100%;
     background: #d9d5c5;
 }
+
 .virtual-show {
-    z-index: 10;
-    height: 600rpx;
-    text-align: center;
+    height: 460rpx;
+    box-sizing: border-box;
+    padding: 50rpx 0;
+    position: relative;
+    z-index: 20;
 }
 
-.virtual-show-img {
-    height: 90%;
+.virtual-swiper {
+    height: 360rpx;
+    padding: 0 10rpx;
+}
+
+.virtual-swiper-item {
+    height: 360rpx;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-item-box {
+    width: 240rpx;
+    height: 360rpx;
+    position: relative;
+}
+
+.item-img {
+    max-width: 230rpx;
+    max-height: 75%;
+    /* max-width: 100vw;
+    max-height: 100vh; */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.active {
+    transform: scale(1.1);
+    transition-duration: 1.5s;
 }
 
 /* 选项展示 */
@@ -81,6 +117,7 @@
     color: #464646;
     line-height: 50rpx;
 }
-.red{
+
+.red {
     color: #fd3e3e;
 }
