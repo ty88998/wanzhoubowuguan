@@ -41,12 +41,23 @@
                 <text>{{collection.name}}</text>
               </view>
             </view>
-            <view class="goToDetail" bindtap="toSceneCollect" data-recno="{{item.recNo}}">
+            <view class="goToDetail" bindtap="toSceneCollect" data-recno="{{item.recNo}}" data-index="{{index}}">
               <text>详情</text>
               <image class="triangle" src="../../assets/right2.png"></image>
             </view>
           </view>
         </block>
+      </view>
+      <view>
+        <view class="scene">
+          <view class="topic-preface">
+            <image class="preface-img" src="../../assets/preface.png"></image>
+            <text>知识链接</text>
+          </view>
+          <view class="topic-content">
+            <rich-text class="" nodes="{{indexInfo.knowledge}}"></rich-text>
+          </view>
+        </view>
       </view>
     </view>
   </view>

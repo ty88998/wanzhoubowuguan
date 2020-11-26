@@ -23,7 +23,6 @@ export function getMuseumsInfo() {
         { appID }
     )
 }
-
 /**
  * 获取字典信息
  * @param {*} params 
