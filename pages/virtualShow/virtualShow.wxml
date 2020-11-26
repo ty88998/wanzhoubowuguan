@@ -1,8 +1,15 @@
 <view class="container">
     <view class="virtual-show">
-    <!--透明背景色图片-->
-        <!-- <image bind:tap="preImg" class="virtual-show-img" src="{{indexInfo.thumbnail}}" mode="aspectFit" /> -->
-        <image bind:tap="preImg" class="virtual-show-img" src="{{scenes.imgURL}}" mode="aspectFit" />
+        <swiper class="virtual-swiper" interval="3500" duration="2000" current='{{current}}' previous-margin="95rpx" next-margin="375rpx" circular bindchange="swiperChange">
+            <!-- <block wx:if="{{indexInfo.display==2}}"> -->
+            <block wx:for="{{scenes.imgURLList}}" wx:key="index">
+                <swiper-item class="virtual-swiper-item">
+                    <view class="swiper-item-box {{current==index?'active':''}}">
+                        <image class="item-img" bind:tap="preImg" data-index="{{index}}" mode="scaleToFill" src="{{item}}" />
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
     <view class="options-show">
         <view bind:tap="payMp3" class="option-btn" data-mp3url="{{scenes.mp3Url||''}}">

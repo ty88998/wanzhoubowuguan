@@ -14,7 +14,9 @@ Page({
     indexInfo: {},
     scenes: {},
     orderNo: 0,
-    playStatus: false
+    playStatus: false,
+    current:0,
+    autoplay:true
   },
 
   /**
@@ -36,6 +38,9 @@ Page({
         // 专题展进入
         scenes = await getCollection({ recNo })
       }
+      this.setData({
+        autoplay:scenes.sourceImgList.length>2 ? true : false
+      })
       wx.setNavigationBarTitle({ title: scenes.name })
       this.setData({indexInfo, scenes})
     } catch (error) {
@@ -58,10 +63,15 @@ Page({
       innerAudioContext.destroy()
     }
   },
-  preImg() {
+  preImg(e) {
+    const { scenes } = this.data;
+    const { index } = e.target.dataset;
     wx.previewImage({
-      current: this.data.scenes.sourceImg,
-      urls: [this.data.scenes.sourceImg]
+      current: scenes.sourceImgList[index],
+      urls: scenes.sourceImgList
+    })
+    this.setData({
+      current:index
     })
   },
   goTo3D(e) {
@@ -70,5 +80,11 @@ Page({
     wx.navigateTo({
       url: `/pages/three/three?recno=${recno}&name=${name}`
     })
-  }
+  },
+  swiperChange(e) {
+    const { current } = e.detail
+    this.setData({
+      current
+    })
+  },
 })
