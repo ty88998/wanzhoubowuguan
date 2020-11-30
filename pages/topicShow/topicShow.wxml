@@ -15,7 +15,7 @@
                             <view class="swiper-item-box {{currentItem==index?'active':''}}">
                                 <view class="active_detail" wx:if="{{currentItem==index}}" data-recno="{{item.recNo}}" data-index="{{index}}" bind:tap="goToVirtual"></view>
                                 <text class="detail" wx:if="{{currentItem==index}}" data-recno="{{item.recNo}}" data-index="{{index}}" bind:tap="goToVirtual">查看</text>
-                                <image data-recno="{{item.recNo}}" data-index="{{index}}" mode="scaleToFill" src="{{item.thumbnail}}"/>
+                                <image data-recno="{{item.recNo}}" data-index="{{index}}" mode="aspectFit" src="{{item.thumbnail}}"/>
                             </view>
                         </swiper-item>
                     </block>

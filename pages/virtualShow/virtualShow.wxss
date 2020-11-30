@@ -31,14 +31,13 @@
 .swiper-item-box {
     width: 240rpx;
     height: 360rpx;
+    max-width: 240rpx;
     position: relative;
 }
 
 .item-img {
-    max-width: 230rpx;
-    max-height: 75%;
-    /* max-width: 100vw;
-    max-height: 100vh; */
+    max-width: 95%;
+    max-height: 95%;
     position: absolute;
     left: 0;
     right: 0;
@@ -48,8 +47,8 @@
 }
 
 .active {
-    transform: scale(1.1);
-    transition-duration: 1.5s;
+    transform: scale(1.2);
+    transition: ease-in;
 }
 
 /* 选项展示 */

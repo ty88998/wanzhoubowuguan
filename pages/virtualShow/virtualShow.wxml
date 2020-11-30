@@ -1,11 +1,10 @@
 <view class="container">
     <view class="virtual-show">
-        <swiper class="virtual-swiper" interval="3500" duration="2000" current='{{current}}' previous-margin="95rpx" next-margin="375rpx" circular bindchange="swiperChange">
-            <!-- <block wx:if="{{indexInfo.display==2}}"> -->
+        <swiper class="virtual-swiper" interval="3500" duration="1000" autoplay="{{autoplay}}" easing-function="linear" current='{{current}}' previous-margin="105rpx" next-margin="370rpx" circular bindchange="swiperChange">
             <block wx:for="{{scenes.imgURLList}}" wx:key="index">
                 <swiper-item class="virtual-swiper-item">
                     <view class="swiper-item-box {{current==index?'active':''}}">
-                        <image class="item-img" bind:tap="preImg" data-index="{{index}}" mode="scaleToFill" src="{{item}}" />
+                        <image class="item-img" bind:tap="preImg" data-index="{{index}}" mode="aspectFit" src="{{item}}"/>
                     </view>
                 </swiper-item>
             </block>

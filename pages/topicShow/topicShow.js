@@ -17,7 +17,7 @@ Page({
     contentTitle: '',
     contentBody: '',
     //传过来的json对象
-    params:{}
+    params: {}
   },
 
   /**
@@ -25,17 +25,17 @@ Page({
    */
   async onLoad(options) {
     const params = JSON.parse(options.params);
-    this.setData({params})
+    this.setData({ params })
     this._getIndexData(params.recno)
     this.playAudio();
   },
   onUnload() {
     this._leaveAndStopMp3();
   },
-  onShow(){
+  onShow() {
     this.playAudio();
   },
-  onHide(){
+  onHide() {
     this._leaveAndStopMp3();
   },
   /**
@@ -45,7 +45,7 @@ Page({
   playAudio() {
     this._leaveAndStopMp3();
     const that = this;
-    const {params} = this.data;
+    const { params } = this.data;
     innerAudioContext = wx.createInnerAudioContext();
     innerAudioContext.src = params.mp3Url;
     timer = setTimeout(() => {
@@ -55,9 +55,9 @@ Page({
       that._leaveAndStopMp3();
     });
   },
-   //离开或关闭页面，停止播放
+  //离开或关闭页面，停止播放
   _leaveAndStopMp3() {
-    if(innerAudioContext){
+    if (innerAudioContext) {
       clearTimeout(timer);
       innerAudioContext.stop();
       innerAudioContext.destroy();
@@ -91,11 +91,12 @@ Page({
    * @param { Event } event 
    */
   swiperChange(event) {
-    const { current } = event.detail
+    const { current, source } = event.detail
     this._setCurrentData(current)
     this.setData({
       currentItem: current
     })
+
   },
 
   /**
@@ -114,24 +115,24 @@ Page({
  */
   //上一张
   preCollection() {
-    const { currentItem,collectionList } = this.data;
-    if(currentItem===0){
-      this._setCurrentData(collectionList.length-1)
-      this.setData({currentItem:collectionList.length-1})
-    }else{
-      this._setCurrentData(currentItem-1)
-      this.setData({currentItem:currentItem-1})
+    const { currentItem, collectionList } = this.data;
+    if (currentItem === 0) {
+      this._setCurrentData(collectionList.length - 1)
+      this.setData({ currentItem: collectionList.length - 1 })
+    } else {
+      this._setCurrentData(currentItem - 1)
+      this.setData({ currentItem: currentItem - 1 })
     }
   },
   //下一张
-  nextCollection(){
-    const { currentItem,collectionList } = this.data;
-    if(currentItem===collectionList.length-1){
+  nextCollection() {
+    const { currentItem, collectionList } = this.data;
+    if (currentItem === collectionList.length - 1) {
       this._setCurrentData(0)
-      this.setData({currentItem:0})
-    }else{
-      this._setCurrentData(currentItem+1)
-      this.setData({currentItem:currentItem+1})
+      this.setData({ currentItem: 0 })
+    } else {
+      this._setCurrentData(currentItem + 1)
+      this.setData({ currentItem: currentItem + 1 })
     }
   }
 })
