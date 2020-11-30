@@ -15,8 +15,8 @@ Page({
     scenes: {},
     orderNo: 0,
     playStatus: false,
-    current:0,
-    autoplay:true
+    current: 0,
+    autoplay: true
   },
 
   /**
@@ -30,7 +30,7 @@ Page({
   async _getIndexData(recNo) {
     let touristNo = appInst.globalData.touristNo
     try {
-      let {indexInfo, scenes} = this.data
+      let { indexInfo, scenes } = this.data
       if (status) {
         indexInfo = await toProjectDetail({ recNo, touristNo })
         scenes = await getCollection({ recNo: indexInfo.collectNo })
@@ -39,16 +39,16 @@ Page({
         scenes = await getCollection({ recNo })
       }
       this.setData({
-        autoplay:scenes.sourceImgList.length>2 ? true : false
+        autoplay: scenes.sourceImgList.length > 2 ? true : false
       })
       wx.setNavigationBarTitle({ title: scenes.name })
-      this.setData({indexInfo, scenes})
+      this.setData({ indexInfo, scenes })
     } catch (error) {
       console.log('toProjectDetail error: ', error)
-    } 
+    }
   },
   payMp3(e) {
-    const {mp3url} = e.currentTarget.dataset
+    const { mp3url } = e.currentTarget.dataset
     innerAudioContext.src = mp3url
     this.data.playStatus ? innerAudioContext.pause() : innerAudioContext.play()
     this.setData({ playStatus: !this.data.playStatus })
@@ -71,20 +71,23 @@ Page({
       urls: scenes.sourceImgList
     })
     this.setData({
-      current:index
+      current: index
     })
   },
   goTo3D(e) {
-    if(this.data.playStatus) innerAudioContext.pause()
-    const {recno, name} = e.currentTarget.dataset
+    if (this.data.playStatus) innerAudioContext.pause()
+    const { recno, name } = e.currentTarget.dataset
     wx.navigateTo({
       url: `/pages/three/three?recno=${recno}&name=${name}`
     })
   },
   swiperChange(e) {
-    const { current } = e.detail
-    this.setData({
-      current
-    })
-  },
+    // console.log(e.detail.source) //touch手动滑动    autoplay自动轮播
+    // if (e.detail.source === 'touch'||e.detail.source === 'autoplay') {
+      const { current } = e.detail
+      this.setData({
+        current
+      })
+    // }s
+  }
 })
