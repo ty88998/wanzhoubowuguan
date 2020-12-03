@@ -13,7 +13,6 @@ Page({
     showCategory: [],
     showData: []
   },
-
   onLoad() {
     loadEnd = false
     this._initData()

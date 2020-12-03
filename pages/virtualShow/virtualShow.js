@@ -1,5 +1,5 @@
 // pages/virtualShow/virtualShow.js
-import { getCollection, toProjectDetail, getSceneInfos } from '../../api/smallProgram'
+import { getCollection, toProjectDetail,addLikeHistory,addCollectHistory, getSceneInfos } from '../../api/smallProgram'
 
 const appInst = getApp()
 const innerAudioContext = wx.createInnerAudioContext()
@@ -16,7 +16,8 @@ Page({
     orderNo: 0,
     playStatus: false,
     current: 0,
-    autoplay: true
+    autoplay: true,
+    details:{}
   },
 
   /**
@@ -38,11 +39,12 @@ Page({
         // 专题展进入
         scenes = await getCollection({ recNo })
       }
+      const details = JSON.parse(wx.getStorageSync('details'))
       this.setData({
         autoplay: scenes.sourceImgList.length > 2 ? true : false
       })
       wx.setNavigationBarTitle({ title: scenes.name })
-      this.setData({ indexInfo, scenes })
+      this.setData({ indexInfo, scenes,details})
     } catch (error) {
       console.log('toProjectDetail error: ', error)
     }
@@ -89,5 +91,36 @@ Page({
         current
       })
     // }s
-  }
+  },
+
+  //用户点赞/取消 
+    addLike(e) {
+      const { touristNo } = appInst.globalData
+      if (touristNo) {
+        const { details } = this.data
+        const { recno } = e.currentTarget.dataset
+        addLikeHistory({ recNo: recno, touristNo })
+          .then(res => {
+            details.pointRatio = res.pointRatio
+            details.isLike = !details.isLike
+            this.setData({ details })
+          })
+      } 
+    },
+
+    // 用户收藏/取消
+    addCollect(e) {
+      const { touristNo } = appInst.globalData
+      if (touristNo) {
+        const { details } = this.data
+        const { recno } = e.currentTarget.dataset
+        addCollectHistory({ recNo: recno, touristNo })
+          .then(() => {
+            details.isCollect = !details.isCollect
+            this.setData({
+              details
+            })
+          })
+      } 
+    },
 })

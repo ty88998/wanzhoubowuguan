@@ -8,10 +8,11 @@ Component({
   properties: {
     itemData: Object
   },
-
   methods: {
     /** 页面跳转 */
     goToPage(e) {
+      const {itemData} = this.data;
+      wx.setStorageSync('details',JSON.stringify(itemData));
       const { recno, display } = e.currentTarget.dataset
       if (display == 0) {
         loginIntercept({ url: '/pages/virtualShow/virtualShow', recno, status: true })
