@@ -11,9 +11,18 @@ Component({
   methods: {
     /** 页面跳转 */
     goToPage(e) {
-      const {itemData} = this.data;
-      wx.setStorageSync('details',JSON.stringify(itemData));
+      const { itemData } = this.data;
       const { recno, display } = e.currentTarget.dataset
+      const details = {
+        name:itemData.name,
+        recNo:recno,
+        isLike:itemData.isLike,
+        pointRatio:itemData.pointRatio,
+        isCollect:itemData.isCollect,
+        views:itemData.views
+      }
+      wx.setStorageSync('details', JSON.stringify(details));
+      wx.setStorageSync('choose', JSON.stringify({ recno, display }));
       if (display == 0) {
         loginIntercept({ url: '/pages/virtualShow/virtualShow', recno, status: true })
       } else {

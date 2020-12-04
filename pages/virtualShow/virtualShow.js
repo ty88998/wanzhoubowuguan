@@ -1,5 +1,5 @@
 // pages/virtualShow/virtualShow.js
-import { getCollection, toProjectDetail,addLikeHistory,addCollectHistory, getSceneInfos } from '../../api/smallProgram'
+import { getCollection, toProjectDetail,addLikeHistory,addCollectHistory, getSceneInfos } from '../../api/smallProgram';
 
 const appInst = getApp()
 const innerAudioContext = wx.createInnerAudioContext()
@@ -17,15 +17,45 @@ Page({
     playStatus: false,
     current: 0,
     autoplay: true,
-    details:{}
+    details:{},
+    choose:{}
   },
-
+  //自定义分享给朋友
+  onShareAppMessage: function (res) {
+    const {details,choose} = this.data;
+    let url = JSON.stringify([details,choose]);
+      return {
+        title: this.data.details.name,
+        path: `/pages/exhibition/exhibition?url=${url}`,
+        success: function (res) {
+  
+        },
+        fail: function(err) {
+            console.log(err)
+        }
+      }
+  },
+  //用户点击右上角分享朋友圈
+	onShareTimeline: function () {
+    const {details,choose} = this.data;
+    let url = JSON.stringify([details,choose]);
+		return {
+	      title: this.data.details.name,
+	      query: {
+	        url: url
+	      }
+	    }
+	},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     status = options.status
     this._getIndexData(options.recno)
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['onShareAppMessage','shareTimeline']
+    })
   },
 
   async _getIndexData(recNo) {
@@ -39,12 +69,13 @@ Page({
         // 专题展进入
         scenes = await getCollection({ recNo })
       }
-      const details = JSON.parse(wx.getStorageSync('details'))
+      const details = JSON.parse(wx.getStorageSync('details'));
+      const choose = JSON.parse(wx.getStorageSync('choose'));
       this.setData({
         autoplay: scenes.sourceImgList.length > 2 ? true : false
       })
       wx.setNavigationBarTitle({ title: scenes.name })
-      this.setData({ indexInfo, scenes,details})
+      this.setData({ indexInfo, scenes,details,choose})
     } catch (error) {
       console.log('toProjectDetail error: ', error)
     }

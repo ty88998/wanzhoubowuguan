@@ -1,0 +1,9 @@
+<!-- components/share.wxml -->
+<view class='share'>
+   <view class='like'>
+      <view class='iconfont icon-aixin'></view>
+   </view>
+   <view class='weixin'>
+       <button open-type="share" class='iconfont icon-weixin'></button>
+   </view>
+</view>

@@ -1,6 +1,6 @@
 import { getDicInfos } from '../../api/indexInfo'
 import { getProjectInfo } from '../../api/smallProgram'
-
+import { loginIntercept } from '../../utils/loginUtils'
 const MAX_ROW = 6
 // 加载到底部
 let loadEnd = false
@@ -13,9 +13,23 @@ Page({
     showCategory: [],
     showData: []
   },
-  onLoad() {
+  onLoad(options) {
     loadEnd = false
     this._initData()
+    if(options.url){
+      // let url = decodeURIComponent(options.url);
+      let arr = JSON.parse(options.url);
+      wx.setStorageSync('choose',JSON.stringify(arr[1]));
+      wx.setStorageSync('details',JSON.stringify(arr[0]));
+      const {display,recno} = arr[1];
+      if (display == 0) {
+        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno, status: true })
+      } else {
+        loginIntercept({ url: '/pages/topic/topic', recno })
+      }
+ 
+    }
+
   },
 
   async _initData() {
