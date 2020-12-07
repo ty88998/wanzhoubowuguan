@@ -1,9 +1,10 @@
 // pages/virtualShow/virtualShow.js
 import { getCollection, toProjectDetail,addLikeHistory,addCollectHistory, getSceneInfos } from '../../api/smallProgram';
-
+import { getMuseumsInfo,getWXOpenId } from '../../api/indexInfo'
+import { getItem,setItem } from '../../utils/store'
 const appInst = getApp()
 const innerAudioContext = wx.createInnerAudioContext()
-let status = false
+let status = false;
 
 Page({
 
@@ -25,7 +26,7 @@ Page({
     const {details,choose} = this.data;
     let url = JSON.stringify([details,choose]);
       return {
-        title: this.data.details.name,
+        title: this.data.scenes.name,
         path: `/pages/exhibition/exhibition?url=${url}`,
         success: function (res) {
   
@@ -40,24 +41,58 @@ Page({
     const {details,choose} = this.data;
     let url = JSON.stringify([details,choose]);
 		return {
-	      title: this.data.details.name,
+	      title: this.data.scenes.name,
 	      query: {
 	        url: url
-	      }
+        }
 	    }
 	},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    status = options.status
+    try {
+      const openid = getItem('openid');
+      if(!openid){
+        this._getOpenId();
+        this._initMuseumNo();
+      }
+    } catch (error) {
+      
+    }
+    status = options.status;
     this._getIndexData(options.recno)
     wx.showShareMenu({
       withShareTicket: true,
       menus: ['onShareAppMessage','shareTimeline']
     })
   },
-
+  /** 获取OpenId,通过分享朋友，默认进入展览模块，会略过首页，所以这里也添加获取 */
+  _getOpenId() {
+    wx.login({
+      success: res => {
+        // console.log(res)
+        if (res.code) {
+          getWXOpenId({ code: res.code })
+            .then(resp => {
+              const openId = JSON.parse(resp.json).openid
+              setItem('openid', openId)
+              appInst.globalData.openId = openId
+            }).catch(err => console.log(err))
+        }
+      }
+    })
+  },
+  /** 通过异步操作，保证博物馆编号的存在 */
+  async _initMuseumNo() {
+    try {
+      const museumInfo = await getMuseumsInfo()
+      setItem("museumNo", museumInfo.recNo)
+      appInst.globalData.museumNo = museumInfo.recNo
+    } catch (err) {
+      console.log(err)
+    }
+  },
   async _getIndexData(recNo) {
     let touristNo = appInst.globalData.touristNo
     try {
@@ -69,8 +104,9 @@ Page({
         // 专题展进入
         scenes = await getCollection({ recNo })
       }
-      const details = JSON.parse(wx.getStorageSync('details'));
-      const choose = JSON.parse(wx.getStorageSync('choose'));
+      const details = JSON.parse(getItem('details'));
+      let choose = JSON.parse(getItem('choose'));
+      choose = {...choose,recNoDetail:recNo}
       this.setData({
         autoplay: scenes.sourceImgList.length > 2 ? true : false
       })

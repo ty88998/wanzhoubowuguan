@@ -14,7 +14,6 @@ Component({
       const { itemData } = this.data;
       const { recno, display } = e.currentTarget.dataset
       const details = {
-        name:itemData.name,
         recNo:recno,
         isLike:itemData.isLike,
         pointRatio:itemData.pointRatio,

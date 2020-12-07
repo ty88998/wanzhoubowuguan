@@ -1,6 +1,7 @@
-import { getDicInfos } from '../../api/indexInfo'
+import { getDicInfos,getMuseumsInfo,getWXOpenId } from '../../api/indexInfo'
 import { getProjectInfo } from '../../api/smallProgram'
 import { loginIntercept } from '../../utils/loginUtils'
+import { setItem } from '../../utils/store'
 const MAX_ROW = 6
 // 加载到底部
 let loadEnd = false
@@ -14,24 +15,53 @@ Page({
     showData: []
   },
   onLoad(options) {
-    loadEnd = false
-    this._initData()
+    console.log(options)
+    this._getOpenId();
+    this._initMuseumNo();
+    loadEnd = false;
+    this._initData();
     if(options.url){
       // let url = decodeURIComponent(options.url);
       let arr = JSON.parse(options.url);
-      wx.setStorageSync('choose',JSON.stringify(arr[1]));
-      wx.setStorageSync('details',JSON.stringify(arr[0]));
-      const {display,recno} = arr[1];
+      setItem('choose',JSON.stringify(arr[1]));
+      setItem('details',JSON.stringify(arr[0]));
+      const {display,recno,recNoDetail} = arr[1];
       if (display == 0) {
         loginIntercept({ url: '/pages/virtualShow/virtualShow', recno, status: true })
       } else {
-        loginIntercept({ url: '/pages/topic/topic', recno })
+        // loginIntercept({ url: '/pages/topic/topic', recno,recNoDetail,share:true })
+        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno:recNoDetail })
       }
  
     }
 
   },
-
+  /** 获取OpenId,通过分享朋友，默认进入展览模块，会略过首页，所以这里也添加获取 */
+  _getOpenId() {
+    wx.login({
+      success: res => {
+        // console.log(res)
+        if (res.code) {
+          getWXOpenId({ code: res.code })
+            .then(resp => {
+              const openId = JSON.parse(resp.json).openid
+              setItem('openid', openId)
+              appInst.globalData.openId = openId
+            }).catch(err => console.log(err))
+        }
+      }
+    })
+  },
+  /** 通过异步操作，保证博物馆编号的存在 */
+  async _initMuseumNo() {
+    try {
+      const museumInfo = await getMuseumsInfo()
+      setItem("museumNo", museumInfo.recNo)
+      appInst.globalData.museumNo = museumInfo.recNo
+    } catch (err) {
+      console.log(err)
+    }
+  },
   async _initData() {
     const result = await getDicInfos()
     this.setData({ showCategory: result.data })
