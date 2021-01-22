@@ -20,7 +20,9 @@
     "pages/three/three",
     "pages/fullex/fullex",
     "pages/topic/topic",
-    "pages/scene/scene"
+    "pages/scene/scene",
+    "pages/detail/detail",
+    "pages/topic_back/topic_back"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,10 +59,12 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": ["location"],
+  "requiredBackgroundModes": [
+    "location"
+  ],
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   }
 }

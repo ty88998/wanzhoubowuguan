@@ -3,7 +3,9 @@ import { baseApi, getItem, setItem } from './utils/store'
 
 App.baseApi = baseApi;
 App({
-  onLaunch() {
+  onLaunch(options) {
+    const { scene } = options;
+    this.globalData.isSinglePage = scene;
     wx.getSetting({
       success: result => {
         if (result.authSetting['scope.userInfo']) {

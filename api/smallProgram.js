@@ -71,10 +71,11 @@ export function getSceneInfos(params) {
  * 获取后台发布的虚拟展出项目信息
  * @param {*} params 
  */
-export function getProjectInfo(params) {
+export function getProjectInfo(params,options={loading:true}) {
     return apiUtil(
         'SmallProgram/getProjectInfo.do',
-        params
+        params,
+        options
     )
 }
 

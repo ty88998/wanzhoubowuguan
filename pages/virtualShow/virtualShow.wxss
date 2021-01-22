@@ -95,7 +95,8 @@
 .show-content {
     margin-top: 180rpx;
     box-sizing: border-box;
-    padding: 0 50rpx;
+    padding: 0 50rpx 50rpx;
+    position: relative;
     /* color: #333333; */
 }
 
@@ -119,4 +120,33 @@
 
 .red {
     color: #fd3e3e;
+}
+
+.option-footer {
+    width: 650rpx;
+    height: 160rpx;
+    background: #d9d5c5;
+    box-shadow: 0 10rpx 20rpx 0 rgba(0, 0, 0, 0.06);
+    border-radius: 20rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.show-option-view {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 26rpx;
+}
+
+.shareBtn {
+    height: 40rpx;
+    width: 48rpx;
+    margin-right: 12rpx;
+    position: absolute;
+    top: 0;
 }

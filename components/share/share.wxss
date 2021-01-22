@@ -1,0 +1,10 @@
+/* components/share.wxss */
+.share{
+    width: 45rpx;
+    height: 45rpx;
+}
+.share button{
+    background: none;
+    height: 100rpx;
+    width: 100rpx;
+}

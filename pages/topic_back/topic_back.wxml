@@ -1,0 +1,83 @@
+<!-- pages/topic/topic.wxml -->
+<!-- <scroll-view scroll-y="true" bindscroll="scroll" style="height:500px"> -->
+  <view class="container">
+    <view class="nextPage" wx:if="{{nextPage}}"></view>
+    <!-- <view class="filterbg" style="background-image: url({{indexInfo.thumbnail}});"></view> -->
+    <view class="filterbg" style="background-image: url('https://integrationplatform.oss-cn-chengdu.aliyuncs.com/bg_img/2327078951f1f769f7a9a26bda1af7b.png');"></view>
+    <view class="topic">
+      <!-- <view current="{{current}}" bindchange="changeItem" interval="2000" duration="1000" style="height: {{swiper_h}}px;"> -->
+      <view bindchange="changeItem">
+        <view class="swiper-item0">
+          <view class="scene">
+            <view class="topic-header">
+              <text class="topic-name">{{indexInfo.name}}</text>
+              <text class="topic-region">——{{indexInfo.region}}</text>
+            </view>
+            <view class="topic-preface">
+              <image class="preface-img" src="../../assets/preface.png"></image>
+              <text>序言</text>
+            </view>
+            <view class="topic-content">
+              <text>{{indexInfo.preface}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="swiper-item1">
+          <block wx:for="{{scenes}}" wx:key="index">
+            <view class="scene scene-many">
+              <view class="topic-preface">
+                <image class="preface-img" src="../../assets/preface.png"></image>
+                <text>{{item.name}}</text>
+              </view>
+              <!-- <view class="scene-header">
+              <text>{{item.name}}</text>
+            </view> -->
+              <view class="scene-synopsis topic-content">
+                <text>{{item.synopsis}}</text>
+              </view>
+              <view class="collections topic-content">
+                <view class="collection-item" wx:for="{{item.collections}}" wx:for-item="collection" wx:key="*this">
+                  <view class="show_item">
+                    <view class="show_item_head">{{collection.name}}</view>
+                    <view class="item_flex">
+                      <image src="{{collection.thumbnail}}" mode="aspectFit" lazy-load="{{true}}" data-src="{{collection.thumbnail}}" bindtap="previewImage"></image>
+                      <view class="item_flex_right">
+                        <view class="option-btn" data-mp3url="{{collection.mp3Url||''}}">
+                          <image src="../../assets/show/voice.png" alt="" /> 
+                          <view>语音播报</view>
+                        </view>
+                        <view class="option-btn" data-recno="{{collection.recNo}}" bindtap="goToVirtual">
+                          <image src="../../assets/show/emulate3D.png" alt="" />
+                          <view>3D展示</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                  <!-- <text>{{collection.name}}</text>--<text>{{collection.name}}</text> -->
+                </view>
+              </view>
+              <view class="goToDetail" bindtap="toSceneCollect" data-recno="{{item.recNo}}" data-index="{{index}}">
+                <text>详情</text>
+                <image class="triangle" src="../../assets/right2.png"></image>
+              </view>
+            </view>
+          </block>
+        </view>
+        <view>
+          <view class="scene">
+            <view class="topic-preface">
+              <image class="preface-img" src="../../assets/preface.png"></image>
+              <text>知识链接</text>
+            </view>
+            <view class="topic-content">
+              <!-- <rich-text class="" nodes="{{indexInfo.knowledge}}"></rich-text> -->
+              <view wx:for="{{knowledge}}" wx:key="index">
+                <text>{{item}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+<!-- </scroll-view> -->

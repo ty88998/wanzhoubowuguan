@@ -13,10 +13,9 @@ Page({
     liveShow: [],
     museumInfoThis:{}
   },
-
    onLoad() {
-    this._getOpenId()
-    this._initData()
+    this._getOpenId();
+    this._initData();
   },
   async getMuseumsThis(){
     try{
@@ -32,7 +31,7 @@ Page({
         museumInfoThis
       })
     }catch(err){
-      console.log('error',err)
+      console.log('error',err);
     }
   },
   /** 通过异步操作，保证博物馆编号的存在 */
@@ -61,33 +60,33 @@ Page({
   },
 
   /** 获取OpenId */
-  _getOpenId() {
-    wx.login({
-      success: res => {
-        // console.log(res)
-        if (res.code) {
-          getWXOpenId({ code: res.code })
-            .then(resp => {
-              const openId = JSON.parse(resp.json).openid
-              setItem('openid', openId)
-              appInst.globalData.openId = openId
-            }).catch(err => console.log(err))
-        }
-      }
-    })
-  },
-  // _getOpenId(){
+  // _getOpenId() {
   //   wx.login({
-  //     success:async (res)=>{
-  //       if(res.code){
-  //         let resp = await getWXOpenId({code:res.code})
-  //         const openId = JSON.parse(resp.json).openid
-  //         setItem('openid', openId)
-  //         appInst.globalData.openId = openId
+  //     success: res => {
+  //       // console.log(res)
+  //       if (res.code) {
+  //         getWXOpenId({ code: res.code })
+  //           .then(resp => {
+  //             const openId = JSON.parse(resp.json).openid
+  //             setItem('openid', openId)
+  //             appInst.globalData.openId = openId
+  //           }).catch(err => console.log(err))
   //       }
   //     }
   //   })
   // },
+  _getOpenId(){
+    wx.login({
+      success:async (res)=>{
+        if(res.code){
+          let resp = await getWXOpenId({code:res.code})
+          const openId = JSON.parse(resp.json).openid
+          setItem('openid', openId)
+          appInst.globalData.openId = openId
+        }
+      }
+    })
+  },
 
   /** 页面跳转 */
   goToMore(e) {
