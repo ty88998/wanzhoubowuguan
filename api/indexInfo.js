@@ -27,10 +27,11 @@ export function getMuseumsInfo() {
  * 获取字典信息
  * @param {*} params 
  */
-export function getDicInfos() {
+export function getDicInfos(options={loading:true}) {
     return apiUtil(
         'indexInfo/getDicInfos.do',
-        { type: 'projectType ' }
+        { type: 'projectType ' },
+        options
     )
 }
 

@@ -55,7 +55,8 @@
             <text>知识链接</text>
           </view>
           <view class="topic-content">
-            <rich-text class="" nodes="{{indexInfo.knowledge}}"></rich-text>
+            <!-- <rich-text class="" nodes="{{indexInfo.knowledge}}"></rich-text> -->
+            <view wx:for="{{knowledge}}" wx:key="index"><text>{{item}}</text></view>
           </view>
         </view>
       </view>

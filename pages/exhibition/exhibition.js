@@ -12,10 +12,10 @@ Page({
   data: {
     showTable: 0,
     showCategory: [],
-    showData: []
+    showData: [],
+    allData:[]
   },
   onLoad(options) {
-    console.log(options)
     this._getOpenId();
     this._initMuseumNo();
     loadEnd = false;
@@ -25,16 +25,19 @@ Page({
       let arr = JSON.parse(options.url);
       setItem('choose',JSON.stringify(arr[1]));
       setItem('details',JSON.stringify(arr[0]));
-      const {display,recno,recNoDetail} = arr[1];
+      const {display,recNoDetail} = arr[1];
+      const {recNo} = arr[0];
       if (display == 0) {
-        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno, status: true })
+        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno:recNo, status: true })
       } else {
         // loginIntercept({ url: '/pages/topic/topic', recno,recNoDetail,share:true })
         loginIntercept({ url: '/pages/virtualShow/virtualShow', recno:recNoDetail })
       }
- 
     }
-
+  },
+  onShow(){
+    //实时获取登录之后的数据(点赞收藏字段登录后才会变化)，同时不用刷新之前页面，提高体验度。
+    this.updateProjectInfo();
   },
   /** 获取OpenId,通过分享朋友，默认进入展览模块，会略过首页，所以这里也添加获取 */
   _getOpenId() {
@@ -63,11 +66,10 @@ Page({
     }
   },
   async _initData() {
-    const result = await getDicInfos()
+    const result = await getDicInfos({loading:false})
     this.setData({ showCategory: result.data })
     this._getProjectInfo(result.data[0].recNo)
   },
-
   /** 获取展览类型 */
   _getProjectInfo(projectType) {
     if (!loadEnd) {
@@ -96,7 +98,16 @@ Page({
       })
     }
   },
-
+  //获取更新后的所有数据
+  async updateProjectInfo(){
+    const { showTable } = this.data
+    const result = await getDicInfos({loading:false});
+    this.setData({ showCategory: result.data })
+    const projectType = result.data[showTable].recNo;
+    const touristNo = appInst.globalData.touristNo || "";
+    const res = await getProjectInfo({page:1,rows:30,projectType,touristNo},{loading:false});
+    this.setData({allData:res.data});
+  },
   /** 分类切换跳转方法 */
   switchToShow(e) {
     loadEnd = false
@@ -107,6 +118,7 @@ Page({
       showData: []
     })
     this._getProjectInfo(showCategory[index].recNo)
+    this.updateProjectInfo();
   },
 
   onReachBottom() {

@@ -7,7 +7,7 @@
     </block>
   </view>
   <view wx:if="{{showData.length}}" class="show-content">
-    <x-flow-slot flowData="{{showData}}" generic:selectable="x-flow-card" imageField="thumbnail" loadEnd="{{loadEnd}}" />
+    <x-flow-slot flowData="{{showData}}" allData="{{allData}}" generic:selectable="x-flow-card" imageField="thumbnail" loadEnd="{{loadEnd}}" />
   </view>
 </view>
 <x-back-top></x-back-top>

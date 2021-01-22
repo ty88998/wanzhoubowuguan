@@ -1,30 +1,35 @@
 import { addCollectHistory, addLikeHistory } from '../../api/smallProgram'
 import { loginIntercept } from '../../utils/loginUtils'
+import { getItem, setItem } from '../../utils/store'
 
 const appInst = getApp()
 
 Component({
 
   properties: {
-    itemData: Object
+    itemData: Object,
+    allData:Array
   },
   methods: {
     /** 页面跳转 */
     goToPage(e) {
-      const { itemData } = this.data;
+      const { itemData,allData } = this.data;
+      let newData = allData.filter(value=>value.recNo==itemData.recNo);
       const { recno, display } = e.currentTarget.dataset
-      const details = {
-        recNo:recno,
-        isLike:itemData.isLike,
-        pointRatio:itemData.pointRatio,
-        isCollect:itemData.isCollect,
-        views:itemData.views
-      }
-      wx.setStorageSync('details', JSON.stringify(details));
-      wx.setStorageSync('choose', JSON.stringify({ recno, display }));
+      let details = {
+        recNo: recno,
+        isLike: newData[0].isLike,
+        pointRatio: newData[0].pointRatio,
+        isCollect: newData[0].isCollect,
+        views: newData[0].views
+      };
+      setItem('details', JSON.stringify(details));
+      setItem('choose', JSON.stringify({ display }));
       if (display == 0) {
         loginIntercept({ url: '/pages/virtualShow/virtualShow', recno, status: true })
+        // loginIntercept({ url: '/pages/detail/detail', recno, status: true })
       } else {
+        // loginIntercept({ url: '/pages/topic_back/topic_back', recno })
         loginIntercept({ url: '/pages/topic/topic', recno })
       }
     },

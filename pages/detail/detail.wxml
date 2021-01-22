@@ -1,0 +1,4 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail">
+    <web-view src="{{params}}" style="width: 700rpx;height: 700rpx;"></web-view>
+</view>

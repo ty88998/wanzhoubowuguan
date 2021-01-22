@@ -8,6 +8,10 @@ let minIndex = 0
 Component({
   properties: {
     flowData: Array,
+    allData:{
+      type:Array,
+      value:[]
+    },
     column: {
       type: Number,
       value: 2

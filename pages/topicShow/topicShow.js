@@ -24,10 +24,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    const params = JSON.parse(options.params);
-    this.setData({ params })
-    this._getIndexData(params.recno)
-    this.playAudio();
+    let params = {};
+    const that = this;
+    //获取事件对象
+    const eventChannel = this.getOpenerEventChannel()
+    //通知上一页，传回参数，响应函数
+    //改变上一页监听的数据时调用
+    // eventChannel.emit('funcA', {data: '目标页面'});
+    // eventChannel.emit('funcB', {data: '目标页面'});
+    // 监听acceptData事件，获取上一页面通过eventChannel传送到当前页面的数据
+    eventChannel.on('sendData', function(data) {
+      params = {...data.data}
+      that.setData({ params })
+      that._getIndexData(params.recno)
+      that.playAudio();
+    })
+    // params = JSON.parse(options.params);
   },
   onUnload() {
     this._leaveAndStopMp3();

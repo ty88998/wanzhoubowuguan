@@ -20,7 +20,8 @@ Page({
     autoplay: true,
     details: {},
     choose: {},
-    test: false
+    test: false,
+    params: {}
   },
   //自定义分享给朋友
   onShareAppMessage: function (options) {
@@ -88,7 +89,8 @@ Page({
   /** 通过异步操作，保证博物馆编号的存在 */
   async _initMuseumNo() {
     try {
-      const museumInfo = await getMuseumsInfo()
+      const 
+      museumInfo = await getMuseumsInfo()
       setItem("museumNo", museumInfo.recNo)
       appInst.globalData.museumNo = museumInfo.recNo
     } catch (err) {
@@ -96,7 +98,7 @@ Page({
     }
   },
   async _getIndexData(recNo) {
-    let touristNo = appInst.globalData.touristNo;
+    let touristNo = appInst.globalData.touristNo
     try {
       let { indexInfo, scenes } = this.data
       if (status) {
@@ -113,7 +115,20 @@ Page({
         autoplay: scenes.sourceImgList.length > 2 ? true : false
       })
       wx.setNavigationBarTitle({ title: scenes.name })
-      this.setData({ indexInfo, scenes, details, choose })
+      //需要传给服务器JSP页面的参数
+      const testUrl = 'https://zrkj.cqzrkj.cn/'
+      const threeD = `${testUrl}SmallProgram/toCollection3D.do?recNo=${scenes.recNo}`;
+      // const address = 'http://192.168.2.110:8080/';
+      const address = 'http://127.0.0.1:8080/';
+      // const address = 'http://192.168.137.1:5000/';
+      // const address = "http://localhost/demo/";
+      const thatScenes = {
+        name:scenes.name,
+        synopsis:scenes.synopsis,
+        mp3Url:scenes.mp3Url,
+      }
+      let touristInfo = JSON.parse(getItem('touristInfo'))
+      this.setData({ indexInfo, scenes, details, choose, params:address + '?params=' + encodeURI(JSON.stringify({ scenes:thatScenes, details,choose,threeD,touristInfo })) })
     } catch (error) {
       console.log('toProjectDetail error: ', error)
     }
@@ -146,9 +161,9 @@ Page({
     })
   },
   goTo3D(e) {
-    if (this.data.playStatus){
+    if (this.data.playStatus) {
       innerAudioContext.pause();
-      this.setData({playStatus:false});
+      this.setData({ playStatus: false });
     }
     const { recno, name } = e.currentTarget.dataset
     wx.navigateTo({
@@ -177,7 +192,7 @@ Page({
           details.isLike = !details.isLike
           this.setData({ details })
         })
-      
+
     }
   },
 

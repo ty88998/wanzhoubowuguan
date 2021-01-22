@@ -9,7 +9,8 @@ export function urlParse(nextInfo = {}) {
             url += key == 'url' ? `${nextInfo[key]}?` : `${key}=${nextInfo[key]}&`
         }
     }
-    return url.slice(0, url.length - 1)
+    // return url.slice(0, url.length - 1)
+    return url.substring(0, url.length - 1)
 }
 
 /**
@@ -19,6 +20,7 @@ export function urlParse(nextInfo = {}) {
 export function loginIntercept(nextInfo) {
     wx.getSetting({
         success(res) {
+            //判断是否同意授权过，字段 res.authSetting
             if (!res.authSetting['scope.userInfo']) {
                 if (nextInfo) {
                     wx.navigateTo({ url: '/pages/login/login?nextInfo=' + JSON.stringify(nextInfo) })

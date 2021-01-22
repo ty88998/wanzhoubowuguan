@@ -3,11 +3,16 @@ import {
   toProjectDetail,
   getSceneInfos,
   getSceneCollect,
+  getProjectInfo
 } from "../../api/smallProgram";
+import { getDicInfos } from '../../api/indexInfo'
+import { loginIntercept } from '../../utils/loginUtils'
 import { get_HTML_str } from '../../utils/util';
+import { getItem, setItem } from "../../utils/store";
 const appInst = getApp();
 let innerAudioContext;
 let timer;
+let timerA;
 Page({
   /**
    * 页面的初始数据
@@ -20,7 +25,7 @@ Page({
     scenes: [],
     mp3Index: 0,
     mp3Arr:[],
-    nextPage:true
+    nextPage:true,
   },
 
   /**
@@ -35,13 +40,14 @@ Page({
   },
   onShow(){
     this.playAudio();
+    this.updateProjectInfo();
   },
   onHide(){
     this._leaveAndStopMp3();
     // this.setData({mp3Index:0});
   },
   async _getIndexData(recNo) {
-    // 获取专题展信息(唐俑珍赏)
+    // 获取专题展信息(唐俑珍赏)-纪念馆馆藏
     let touristNo = appInst.globalData.touristNo;
     const indexInfo = await toProjectDetail({ recNo, touristNo });
     const knowledge = get_HTML_str(indexInfo.knowledge);
@@ -63,6 +69,45 @@ Page({
     });
   },
   /**
+   * @params 全屏预览大图
+   */
+  previewImage(e){
+    const {src} = e.target.dataset;
+    wx.previewImage({
+      urls:[src],
+      current:src
+    })
+  },
+  goToVirtual(e) {
+    const { recno } = e.currentTarget.dataset
+    console.log(recno)
+    // 判断当前轮播图是否为文物，如果是就进行跳转
+    loginIntercept({ url: '/pages/detail/detail', recno })
+    // if (!this.data.indexInfo.display === '2' || !this.data.collectionList[index].isScene) {
+    // }
+  },
+  //获取更新后的所有数据 - 主要更新收藏点赞状态
+  async updateProjectInfo(){
+    const result = await getDicInfos({loading:false});
+    const projectType = result.data[1].recNo;
+    const touristNo = appInst.globalData.touristNo || "";
+    const res = await getProjectInfo({page:1,rows:6,projectType,touristNo},{loading:false});
+    let details = JSON.parse(getItem('details'));
+    const { isCollect,isLike,views,pointRatio } = res.data[0];
+    details = {...details,isCollect,isLike,views,pointRatio};
+    setItem('details',JSON.stringify(details));
+  },
+  //节流
+  scroll(e){
+    if(timerA)clearTimeout(timerA);
+    timerA = setTimeout(() => {
+      this.asyncActive(e)
+    }, 500);
+  },
+  asyncActive(elem){
+    console.log(elem)
+  },
+  /** 
    * 2020.11.13新增，合并四条语音
    * 2020.11.17变更，单条语音
    */
@@ -118,6 +163,13 @@ Page({
       clearTimeout(timer);
       innerAudioContext.stop();
       innerAudioContext.destroy();
+      // wx.getLocation({
+      //   type: 'wgs84',
+      //   success: function(res) {
+      //     var latitude = res.latitude
+      //     var longitude = res.longitude
+      //   },
+      // })
     }
   },
   // 跳转到场景文物页面

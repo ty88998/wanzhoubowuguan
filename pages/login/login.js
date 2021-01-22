@@ -38,15 +38,20 @@ Page({
 
   /** 获取用户编号,并跳转到新页面 */
   _getTouristNo(userInfo) {
-    const { nickName, city, avatarUrl, gender } = userInfo
+    const { nickName, city, avatarUrl, gender } = userInfo;
+    //新增全局变量——用户信息-副本 12.21日
     const openId = getItem('openid')
-    addTouristInfo({
-      wxName: nickName,
-      city,
-      headImg: avatarUrl,
-      openId,
-      sex: gender
-    }).then(res => {
+    let touristInfo = JSON.stringify({wxName: nickName,city,headImg: avatarUrl,openId,sex: gender})
+    setItem('touristInfo',touristInfo)
+    addTouristInfo(
+      // {wxName: nickName,
+      // city,
+      // headImg: avatarUrl,
+      // openId,
+      // sex: gender}
+      JSON.parse(touristInfo)
+      )
+      .then(res => {
       setItem("touristNo", res.recNo)
       appInst.globalData.touristNo = res.recNo
       if (nextInfo) {
