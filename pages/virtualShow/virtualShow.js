@@ -2,10 +2,11 @@
 import { getCollection, toProjectDetail, addLikeHistory, addCollectHistory, getSceneInfos } from '../../api/smallProgram';
 import { getMuseumsInfo, getWXOpenId } from '../../api/indexInfo'
 import { getItem, setItem } from '../../utils/store'
+import { loginIntercept } from '../../utils/loginUtils'
 const appInst = getApp()
 const innerAudioContext = wx.createInnerAudioContext()
 let status = false;
-
+// let touchs = { touchOX:0,touchOY:0,touchNX:0,touchNY:0 }
 Page({
 
   /**
@@ -16,11 +17,21 @@ Page({
     scenes: {},
     orderNo: 0,
     playStatus: false,
+    //当前轮播图索引
     current: 0,
+    //当前点击图索引 + 1
+    currentPre: 0,
     autoplay: true,
     details: {},
     choose: {},
-    test: false
+    test: false,
+    //大图显示逻辑
+    preImgBox: false,
+    //大图中动画延迟
+    duration:0,
+    style:"",
+    //大图地址，解决原数据模糊问题
+    list:[]
   },
   //自定义分享给朋友
   onShareAppMessage: function (options) {
@@ -53,11 +64,8 @@ Page({
    */
   onLoad(options) {
     try {
-      const openid = getItem('openid');
-      if (!openid) {
-        this._getOpenId();
-        this._initMuseumNo();
-      }
+      this._getOpenId();
+      this._initMuseumNo();
     } catch (error) {
 
     }
@@ -100,7 +108,11 @@ Page({
     try {
       let { indexInfo, scenes } = this.data
       if (status) {
-        indexInfo = await toProjectDetail({ recNo, touristNo })
+        if (touristNo && touristNo.length > 0) {
+          indexInfo = await toProjectDetail({ recNo, touristNo })
+        } else {
+          indexInfo = await toProjectDetail({ recNo })
+        }
         scenes = await getCollection({ recNo: indexInfo.collectNo })
       } else {
         // 专题展进入
@@ -113,7 +125,7 @@ Page({
         autoplay: scenes.sourceImgList.length > 2 ? true : false
       })
       wx.setNavigationBarTitle({ title: scenes.name })
-      this.setData({ indexInfo, scenes, details, choose })
+      this.setData({ indexInfo, scenes, details, choose,list:scenes.sourceImgList })
     } catch (error) {
       console.log('toProjectDetail error: ', error)
     }
@@ -137,18 +149,35 @@ Page({
   preImg(e) {
     const { scenes } = this.data;
     const { index } = e.target.dataset;
-    wx.previewImage({
-      current: scenes.sourceImgList[index],
-      urls: scenes.sourceImgList
-    })
+    //背景颜色不可更改
+    // wx.previewImage({
+    //   current: scenes.sourceImgList[index],
+    //   urls: scenes.sourceImgList
+    // })
+    //显示大图
     this.setData({
-      current: index
+      //显示大图
+      preImgBox: true,
+      //设置当前图片路径
+      current: index,
+      currentPre: index,
+      duration:250
     })
   },
+  /** 点击容器消失  */
+  closeImg() {
+    let { currentPre } = this.data;
+    this.setData({
+      preImgBox: false,
+      current:currentPre,
+      duration:0
+    })
+  },
+  /** 查看3D图形 */
   goTo3D(e) {
-    if (this.data.playStatus){
+    if (this.data.playStatus) {
       innerAudioContext.pause();
-      this.setData({playStatus:false});
+      this.setData({ playStatus: false });
     }
     const { recno, name } = e.currentTarget.dataset
     wx.navigateTo({
@@ -157,18 +186,39 @@ Page({
   },
   swiperChange(e) {
     // console.log(e.detail.source) //touch手动滑动    autoplay自动轮播
-    // if (e.detail.source === 'touch'||e.detail.source === 'autoplay') {
-    const { current } = e.detail
-    this.setData({
-      current
-    })
-    // }
+    let { current, source } = e.detail
+    if (source === 'autoplay') {
+      this.setData({
+        current
+      })
+    }else{
+      this.setData({
+        currentPre:current,current
+      })
+    }
   },
+  // touchStart(e){
+  //   touchs.touchOY = e.touches[0].pageY;
+  //   touchs.touchOX = e.touches[0].pageX;
+    
+  // },
+  // touchMove(e){
+  //   touchs.touchNY = e.touches[0].pageY;
+  //   touchs.touchNX = e.touches[0].pageX;
+  // },
+  // touchEnd(e){
+  //   let moveX = touchs.touchNX - touchs.touchOX;
+  //   let moveY = touchs.touchNY - touchs.touchOY;
+  //   this.setData({
+  //     style:`margin-left:${moveX}px;margin-top:${moveY}px;`
+  //   })
+  //   console.log(moveX,moveY)
+  // },
 
   //用户点赞/取消 
   addLike(e) {
     const { touristNo } = appInst.globalData
-    if (touristNo) {
+    if (touristNo && touristNo.length > 0) {
       let { details } = this.data
       const { recno } = e.currentTarget.dataset
       addLikeHistory({ recNo: recno, touristNo })
@@ -177,14 +227,15 @@ Page({
           details.isLike = !details.isLike
           this.setData({ details })
         })
-      
+    } else {
+      loginIntercept();
     }
   },
 
   // 用户收藏/取消
   addCollect(e) {
     const { touristNo } = appInst.globalData
-    if (touristNo) {
+    if (touristNo && touristNo.length > 0) {
       let { details } = this.data
       const { recno } = e.currentTarget.dataset
       addCollectHistory({ recNo: recno, touristNo })
@@ -192,6 +243,8 @@ Page({
           details.isCollect = !details.isCollect
           this.setData({ details })
         })
+    } else {
+      loginIntercept();
     }
   },
 })

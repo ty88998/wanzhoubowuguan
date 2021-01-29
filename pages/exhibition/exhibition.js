@@ -1,4 +1,4 @@
-import { getDicInfos,getMuseumsInfo,getWXOpenId } from '../../api/indexInfo'
+import { getDicInfos, getMuseumsInfo, getWXOpenId } from '../../api/indexInfo'
 import { getProjectInfo } from '../../api/smallProgram'
 import { loginIntercept } from '../../utils/loginUtils'
 import { setItem } from '../../utils/store'
@@ -13,29 +13,29 @@ Page({
     showTable: 0,
     showCategory: [],
     showData: [],
-    allData:[]
+    allData: []
   },
   onLoad(options) {
     this._getOpenId();
     this._initMuseumNo();
     loadEnd = false;
     this._initData();
-    if(options.url){
+    if (options.url) {
       // let url = decodeURIComponent(options.url);
       let arr = JSON.parse(options.url);
-      setItem('choose',JSON.stringify(arr[1]));
-      setItem('details',JSON.stringify(arr[0]));
-      const {display,recNoDetail} = arr[1];
-      const {recNo} = arr[0];
+      setItem('choose', JSON.stringify(arr[1]));
+      setItem('details', JSON.stringify(arr[0]));
+      const { display, recNoDetail } = arr[1];
+      const { recNo } = arr[0];
       if (display == 0) {
-        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno:recNo, status: true })
+        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno: recNo, status: true })
       } else {
         // loginIntercept({ url: '/pages/topic/topic', recno,recNoDetail,share:true })
-        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno:recNoDetail })
+        loginIntercept({ url: '/pages/virtualShow/virtualShow', recno: recNoDetail })
       }
     }
   },
-  onShow(){
+  onShow() {
     //实时获取登录之后的数据(点赞收藏字段登录后才会变化)，同时不用刷新之前页面，提高体验度。
     this.updateProjectInfo();
   },
@@ -43,7 +43,6 @@ Page({
   _getOpenId() {
     wx.login({
       success: res => {
-        // console.log(res)
         if (res.code) {
           getWXOpenId({ code: res.code })
             .then(resp => {
@@ -66,7 +65,7 @@ Page({
     }
   },
   async _initData() {
-    const result = await getDicInfos({loading:false})
+    const result = await getDicInfos({ loading: false })
     this.setData({ showCategory: result.data })
     this._getProjectInfo(result.data[0].recNo)
   },
@@ -99,14 +98,14 @@ Page({
     }
   },
   //获取更新后的所有数据
-  async updateProjectInfo(){
+  async updateProjectInfo() {
     const { showTable } = this.data
-    const result = await getDicInfos({loading:false});
+    const result = await getDicInfos({ loading: false });
     this.setData({ showCategory: result.data })
     const projectType = result.data[showTable].recNo;
     const touristNo = appInst.globalData.touristNo || "";
-    const res = await getProjectInfo({page:1,rows:30,projectType,touristNo},{loading:false});
-    this.setData({allData:res.data});
+    const res = await getProjectInfo({ page: 1, rows: 30, projectType, touristNo }, { loading: false });
+    this.setData({ allData: res.data });
   },
   /** 分类切换跳转方法 */
   switchToShow(e) {
@@ -123,7 +122,9 @@ Page({
 
   onReachBottom() {
     const { showCategory, showTable } = this.data
-    this._getProjectInfo(showCategory[showTable].recNo)
+    setTimeout(() => {
+      this._getProjectInfo(showCategory[showTable].recNo)
+    }, 0);
   },
   onPullDownRefresh() {
     loadEnd = false

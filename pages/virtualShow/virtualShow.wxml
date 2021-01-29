@@ -1,5 +1,17 @@
 <!-- <view wx:if="{{test}}" class="" hover-class="none" hover-stop-propagation="false">单页面测试{{recno}}</view> -->
 <view class="container">
+    <view class="preImgBox {{preImgBox ? 'showImgBox' : 'closeImgBox'}}" bindtap="closeImg">
+        <view class="num">{{currentPre + 1}}/{{list.length}}</view>
+        <swiper class="virtual-swiper2" interval="3500" duration="{{duration}}" easing-function="linear" current='{{currentPre}}' circular bindchange="swiperChange">
+            <block wx:for="{{list}}" wx:key="index">
+                <swiper-item class="virtual-swiper-item2">
+                    <view class="swiper-item-box2">
+                        <image class="item-img item-img2" mode="widthFix" src="{{item}}" show-menu-by-longpress="true"/>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
     <view class="virtual-show">
         <swiper class="virtual-swiper" interval="3500" duration="1000" autoplay="{{autoplay}}" easing-function="linear" current='{{current}}' previous-margin="105rpx" next-margin="370rpx" circular bindchange="swiperChange">
             <block wx:for="{{scenes.imgURLList}}" wx:key="index">

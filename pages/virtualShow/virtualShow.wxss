@@ -5,8 +5,34 @@
     min-height: 100vh;
     height: 100%;
     background: #d9d5c5;
+    position: relative;
 }
 
+/* 大图显示容器 */
+.preImgBox{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #ccc;
+    transition: 0.3s;
+    z-index: 21;
+}
+.showImgBox{
+    transform: scale(1);
+}
+.closeImgBox{
+    transform: scale(0);
+}
+.num{
+    box-sizing: border-box;
+    margin-top: 20rpx;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 0;left: 0;
+    z-index: 30;
+}
+/* 内容区域 */
 .virtual-show {
     height: 460rpx;
     box-sizing: border-box;
@@ -19,6 +45,11 @@
     height: 360rpx;
     padding: 0 10rpx;
 }
+.virtual-swiper2 {
+    height: 100vh;
+    width: 100vw;
+    padding: 0 10rpx;
+}
 
 .virtual-swiper-item {
     height: 360rpx;
@@ -27,12 +58,26 @@
     justify-content: center;
     align-items: center;
 }
+.virtual-swiper-item2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
 
 .swiper-item-box {
     width: 240rpx;
     height: 360rpx;
     max-width: 240rpx;
     position: relative;
+}
+.swiper-item-box2 {
+    width: 600rpx;
+    height: 900rpx;
+    position: relative;
+    /* margin-left: 200rpx; */
 }
 
 .item-img {
@@ -44,6 +89,10 @@
     top: 0;
     bottom: 0;
     margin: auto;
+}
+.item-img2{
+    width: 100%;
+    transform: scale(1.3);
 }
 
 .active {
