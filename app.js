@@ -18,6 +18,13 @@ App({
         }
       }
     })
+    //获取设备信息
+    wx.getSystemInfo({
+      success:(res)=>{
+        this.globalData.screenHeight = res.screenHeight;
+        this.globalData.screenWidth = res.screenWidth;
+      }
+    })
     // //开启后台定位--前后台均可接受信息
     // wx.startLocationUpdateBackground({
     //   success(res){
@@ -75,6 +82,8 @@ App({
     userInfo: getItem("userInfo"),
     touristNo: getItem("touristNo"),
     museumNo: getItem("museumNo"),
-    openId: getItem("openid")
+    openId: getItem("openid"),
+    screenHeight:0,
+    screenWidth:0
   }
 })

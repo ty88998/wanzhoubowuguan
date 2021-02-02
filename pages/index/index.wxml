@@ -50,7 +50,7 @@
             data-image="{{ item.sourceImg }}"
             class="live-show-item-img"
           >
-            <image src="{{ item.imgUrl }}" mode="scaleToFill"></image>
+            <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
             <!-- <view>
               <text>{{item.browseNum}}</text>
               人观看

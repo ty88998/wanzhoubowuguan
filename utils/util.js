@@ -65,3 +65,17 @@ export const get_HTML_str = (str) => {
   }
   return arr;
 }
+
+/**
+ * 20210129新增
+ * @param 判断滑动方向[左/右]
+ */
+export const getTouchData = (endX, endY, startX, startY)=> {
+  let turn = "";
+  if (endX - startX > 50 && Math.abs(endY - startY) < 50) {      //右滑
+    turn = "right";
+  } else if (endX - startX < -50 && Math.abs(endY - startY) < 50) {   //左滑
+    turn = "left";
+  }
+  return turn;
+}

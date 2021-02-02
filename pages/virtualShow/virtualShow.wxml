@@ -1,17 +1,7 @@
 <!-- <view wx:if="{{test}}" class="" hover-class="none" hover-stop-propagation="false">单页面测试{{recno}}</view> -->
 <view class="container">
-    <view class="preImgBox {{preImgBox ? 'showImgBox' : 'closeImgBox'}}" bindtap="closeImg">
-        <view class="num">{{currentPre + 1}}/{{list.length}}</view>
-        <swiper class="virtual-swiper2" interval="3500" duration="{{duration}}" easing-function="linear" current='{{currentPre}}' circular bindchange="swiperChange">
-            <block wx:for="{{list}}" wx:key="index">
-                <swiper-item class="virtual-swiper-item2">
-                    <view class="swiper-item-box2">
-                        <image class="item-img item-img2" mode="widthFix" src="{{item}}" show-menu-by-longpress="true"/>
-                    </view>
-                </swiper-item>
-            </block>
-        </swiper>
-    </view>
+    <canvas wx:for="{{scenes.imgURLList}}" wx:key="index" canvas-id="firstCanvas{{index}}" style="width: {{style.width}}px;height:{{style.height}}px;position: absolute;left:-9999px;z-index: -999;transform:scale(0.1);"></canvas>
+    <!-- <canvas wx:for="{{scenes.imgURLList}}" wx:key="index" type="2d" id="canvas{{index}}" style="width: {{style.width}}px;height:{{style.height}}px;position: absolute;left:-9999px;z-index: -999;transform:scale(0.1);"></canvas> -->
     <view class="virtual-show">
         <swiper class="virtual-swiper" interval="3500" duration="1000" autoplay="{{autoplay}}" easing-function="linear" current='{{current}}' previous-margin="105rpx" next-margin="370rpx" circular bindchange="swiperChange">
             <block wx:for="{{scenes.imgURLList}}" wx:key="index">
@@ -22,6 +12,12 @@
                 </swiper-item>
             </block>
         </swiper>
+        <view wx:if="{{temp.length===0}}" class="spinner" bindtap="message">
+            <view class="text">加载中</view>
+            <view class="bounce bounce1"></view>
+            <view class="bounce bounce2"></view>
+            <view class="bounce bounce3"></view>
+        </view>
     </view>
     <view class="options-show">
         <view bind:tap="payMp3" class="option-btn" data-mp3url="{{scenes.mp3Url||''}}">
