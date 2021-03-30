@@ -1,7 +1,8 @@
 /* pages/exhibition/exhibition.wxss */
 
 .exhibition-page {
-  background: #efeff4;
+  /* background: #efeff4; */
+  background: #d9d5c5;
   box-sizing: border-box;
   padding-bottom: 20rpx;
   min-height: 100vh;

@@ -1,0 +1,23 @@
+{
+  "name": "wanzhoubowuguan",
+  "version": "1.0.0",
+  "description": "万州博物馆小程序-内测",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ty88998/wanzhoubowuguan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ty88998/wanzhoubowuguan/issues"
+  },
+  "homepage": "https://github.com/ty88998/wanzhoubowuguan#readme",
+  "dependencies": {
+    "wxml-to-canvas": "^1.1.1"
+  }
+}

@@ -1,6 +1,7 @@
 <!-- <view wx:if="{{test}}" class="" hover-class="none" hover-stop-propagation="false">单页面测试{{recno}}</view> -->
 <view class="container">
-    <canvas wx:for="{{scenes.imgURLList}}" wx:key="index" canvas-id="firstCanvas{{index}}" style="width: {{style.width}}px;height:{{style.height}}px;position: absolute;left:-9999px;z-index: -999;transform:scale(0.1);"></canvas>
+    <!-- <canvas wx:for="{{scenes.imgURLList}}" wx:key="index" canvas-id="firstCanvas{{index}}" style="width: {{style.width}}px;height:{{style.height}}px;position: absolute;left:-9999px;z-index: -999;transform:scale(0.1);"></canvas> -->
+    <!-- <canvas wx:for="{{scenes.imgURLList}}" wx:key="index" canvas-id="firstCanvas{{index}}" style="width: {{style.width}}px;height:{{style.height}}px;"></canvas> -->
     <!-- <canvas wx:for="{{scenes.imgURLList}}" wx:key="index" type="2d" id="canvas{{index}}" style="width: {{style.width}}px;height:{{style.height}}px;position: absolute;left:-9999px;z-index: -999;transform:scale(0.1);"></canvas> -->
     <view class="virtual-show">
         <swiper class="virtual-swiper" interval="3500" duration="1000" autoplay="{{autoplay}}" easing-function="linear" current='{{current}}' previous-margin="105rpx" next-margin="370rpx" circular bindchange="swiperChange">
@@ -12,12 +13,12 @@
                 </swiper-item>
             </block>
         </swiper>
-        <view wx:if="{{temp.length===0}}" class="spinner" bindtap="message">
+        <!-- <view wx:if="{{temp.length===0}}" class="spinner" bindtap="message">
             <view class="text">加载中</view>
             <view class="bounce bounce1"></view>
             <view class="bounce bounce2"></view>
             <view class="bounce bounce3"></view>
-        </view>
+        </view> -->
     </view>
     <view class="options-show">
         <view bind:tap="payMp3" class="option-btn" data-mp3url="{{scenes.mp3Url||''}}">

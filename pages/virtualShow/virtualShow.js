@@ -18,16 +18,13 @@ Page({
     playStatus: false,
     //当前轮播图索引
     current: 0,
-    //当前点击图索引 + 1
-    currentPre: 0,
     autoplay: true,
     details: {},
     choose: {},
     style: { 'height': appInst.globalData.screenHeight, 'width': appInst.globalData.screenWidth },
-    //大图地址，解决原数据模糊问题
-    list: [],
     //新图片数组
-    temp: []
+    temp: [],
+    BGURLs:[]
   },
   //自定义分享给朋友
   onShareAppMessage: function (options) {
@@ -114,7 +111,8 @@ Page({
         // 专题展进入
         scenes = await getCollection({ recNo })
       }
-      this.makeImg(scenes)
+      //利用canvas生成背景图
+      // this.makeImg(scenes)
       const details = JSON.parse(getItem('details'));
       let choose = JSON.parse(getItem('choose'));
       choose = { ...choose, recNoDetail: recNo }
@@ -122,7 +120,7 @@ Page({
         autoplay: scenes.sourceImgList.length > 2 ? true : false
       })
       wx.setNavigationBarTitle({ title: scenes.name })
-      this.setData({ indexInfo, scenes, details, choose, list: scenes.sourceImgList })
+      this.setData({ indexInfo, scenes, details, choose,BGURLs:scenes.BGURLs })
     } catch (error) {
       console.log('toProjectDetail error: ', error)
     }
@@ -144,15 +142,15 @@ Page({
     }
   },
   preImg(e) {
-    const { temp } = this.data;
+    const { BGURLs } = this.data;
     const { index } = e.target.dataset;
     //背景颜色不可更改
-    if (temp.length > 0) {
+    // if (temp.length > 0) {
       wx.previewImage({
-        current: temp[index],
-        urls: temp
+        current: BGURLs[index],
+        urls: BGURLs
       })
-    }
+    // }
     //显示大图
     this.setData({
       //设置当前图片路径
@@ -225,29 +223,36 @@ Page({
   /**
    * 
    * @param {*} scenes 展览数据
-   * 生成带背景色的图片
+   * 生成带背景色的图片 : 两种解决方式 
+   * 1. 后台生成对应带背景色图片----[固定像素，观感一般]----上传时吃后端资源，避免操作过快
+   * 2. 前端生成带背景图片。---[动态像素，完美全屏]---考验前端设备网速和性能(两步:先加载完成再生成)
+   *    ------以下主要展示在前端生成图片的方法：
    */
+  // 1. 老版canvas接口，微信官方已停止维护
   makeImg(scenes) {
     let { sourceImgList } = scenes;
     const _this = this;
     const { style } = this.data;
     let imgList = [];  //保存所有图片生成后的地址
+    // let ctx = wx.createCanvasContext(`firstCanvas`)
     for (let i = 0; i < sourceImgList.length; i++) {
       wx.getImageInfo({
         src: sourceImgList[i],
         success: (res) => {
           let ctx = wx.createCanvasContext(`firstCanvas${i}`)
+          ctx.clearRect(0,0,style.width, style.height)
           ctx.drawImage('../../assets/name2.png', 0, 0, style.width, style.height) // 绘制图像到画布
           // 图片那拼接
-          ctx.drawImage(res.path, style.width*0.075, (style.height - style.width*0.85/375*500) / 2, style.width*0.85, style.width*0.85/375*500) // 绘制图像到原有画布，也就是图片拼接
+          ctx.drawImage(res.path, style.width * 0.075, (style.height - style.width * 0.85 / 375 * 500) / 2, style.width * 0.85, style.width * 0.85 / 375 * 500) // 绘制图像到原有画布，也就是图片拼接
           // 图片加水印                   
           // ctx.fillText('你要添加的文字', 0, 50 * j) //在画布上绘制被填充的文本
           // ctx.setTextAlign('center') // 文字居中
           // ctx.setFillStyle('#a00b0f') // 文字颜色：黑色
-          ctx.draw(true, setTimeout(() => {
+          ctx.draw(false, () => {
             wx.canvasToTempFilePath({
               canvasId: `firstCanvas${i}`,
               success: (res) => {
+                console.log(i,res.tempFilePath)
                 imgList.push({ src: res.tempFilePath, index: i })
                 imgList.sort((a, b) => a.index - b.index)
                 if (imgList.length === sourceImgList.length) {
@@ -259,15 +264,19 @@ Page({
               }
             })
 
-          }, 500))
+          })
         }
       })
     }
   },
+  // 2. canvas2d新接口
   // makeImg(scenes) {
   //   let { sourceImgList } = scenes;
   //   const _this = this;
   //   const { style } = this.data;
+  //   const dpr = wx.getSystemInfoSync().pixelRatio
+  //   const query = this.createSelectorQuery()
+  //   this.dpr = dpr
   //   let imgList = [];  //保存所有图片生成后的地址
   //   for (let i = 0; i < sourceImgList.length; i++) {
   //     wx.getImageInfo({
@@ -279,7 +288,7 @@ Page({
   //         // // 图片那拼接
   //         // ctx.drawImage(res.path, 0, (style.height - 466) / 2, 350, 466) // 绘制图像到原有画布，也就是图片拼接
   //         wx.createSelectorQuery()
-  //           .select(`#canvas${i}`)
+  //         .select(`#canvas${i}`)
   //           .fields({
   //             node: true,
   //             size: true,
@@ -287,40 +296,46 @@ Page({
   //           .exec((res) => {
   //             let myCanvas = res[0].node;
   //             let myCtx = myCanvas.getContext('2d');
+  //             myCanvas.width = res[0].width * dpr
+  //             myCanvas.height = res[0].height * dpr
+  //             myCtx.scale(dpr, dpr)
   //             const headerImg = myCanvas.createImage();
-  //             // const tempImg = myCanvas.createImage();
+  //             const tempImg = myCanvas.createImage();
   //             headerImg.src = "../../assets/name2.png";
-  //             // tempImg.src = sourceImgList[i];
+  //             tempImg.src = sourceImgList[i];
   //             headerImg.onload = () => {
+  //               myCtx.clearRect(0,0,myCanvas.width, myCanvas.height)
   //               myCtx.drawImage(headerImg, 0, 0, style.width, style.height);
   //             };
-  //             // tempImg.onload = () => {
-  //             //   myCtx.drawImage(tempImg, 0, 0, 350, 466);
-  //             // };
-  //             wx.canvasToTempFilePath({
-  //               canvas:myCanvas,
-  //               // x:0,
-  //               // y:0,
-  //               // width:style.width,
-  //               // height:style.height,
-  //               // destWidth:style.width,
-  //               // destHeight:style.height,
-  //               success: (res) => {
-                  
-  //                 // imgList.push({ src: res.tempFilePath, index: i })
-  //                 // imgList.sort((a, b) => a.index - b.index)
-  //                 // if (imgList.length === sourceImgList.length) {
-  //                 //   _this.setData({ temp: imgList.map((value) => value.src) });
-  //                 // }
-  //                 console.log(res.tempFilePath)
-  //               },
-
-  //               fail: (e) => {
-  //                 console.log(e)
-
-  //               }
-
-  //             })
+  //             tempImg.onload = () => {
+  //               myCtx.drawImage(tempImg, 0, 0, 350, 466);
+  //             };
+  //             setTimeout(() => {
+  //               wx.canvasToTempFilePath({
+  //                 canvas:myCanvas,
+  //                 // x:0,
+  //                 // y:0,
+  //                 // width:style.width,
+  //                 // height:style.height,
+  //                 // destWidth:style.width,
+  //                 // destHeight:style.height,
+  //                 success: (res) => {
+  
+  //                   imgList.push({ src: res.tempFilePath, index: i })
+  //                   imgList.sort((a, b) => a.index - b.index)
+  //                   if (imgList.length === sourceImgList.length) {
+  //                     _this.setData({ temp: imgList.map((value) => value.src) });
+  //                   }
+  //                   console.log(res.tempFilePath)
+  //                 },
+  
+  //                 fail: (e) => {
+  //                   console.log(e)
+  
+  //                 }
+  
+  //               })
+  //             }, 1000);
   //           })
   //       }
   //     })

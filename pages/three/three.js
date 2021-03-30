@@ -10,7 +10,6 @@ Page({
     //3d图形路径
     const url = `${App.baseApi.Prod}SmallProgram/toCollection3D.do?recNo=${recno}`;
     const add = 'http://192.168.2.110:8080?url='+url;
-    console.log(url)
     const collection = await getCollection({ recNo: recno });
     //地址拼接--传值到web-view页面
     this.setData({

@@ -16,6 +16,8 @@ Page({
     current: 0,
     indexInfo: {},//三峡移民纪念馆-唐俑珍赏详细资料
     knowledge:[],//知识链接，多段文本
+    preface:[],//序言
+    resetScenesTextArray:[],//专题展文本列表
     playStatus: false,
     scenes: [],
     mp3Index: 0,
@@ -45,7 +47,8 @@ Page({
     let touristNo = appInst.globalData.touristNo;
     const indexInfo = await toProjectDetail({ recNo, touristNo });
     const knowledge = get_HTML_str(indexInfo.knowledge);
-    this.setData({ indexInfo,knowledge });
+    const preface = get_HTML_str(indexInfo.preface);
+    this.setData({ indexInfo,knowledge,preface });
     await this._getSceneData(indexInfo.recNo);
   },
 
@@ -53,7 +56,8 @@ Page({
     // 获取专题展场景数据(武吏 、武士俑  奴仆俑   骑马乐俑)
     const sceneData = await getSceneInfos({ projectNo });
     let scenes = sceneData.data;
-    this.setData({ scenes });
+    let resetScenesTextArray = scenes.map(value=>get_HTML_str(value.synopsis))
+    this.setData({ scenes,resetScenesTextArray });
     scenes.map((scene) => {
       // 获取场景下文物数据(具体到每个个体)
       getSceneCollect({ sceneNo: scene.recNo }).then((res) => {

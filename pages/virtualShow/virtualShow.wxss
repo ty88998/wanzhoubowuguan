@@ -166,15 +166,19 @@
     justify-content: center;
     align-items: center;
     z-index: 99;
-    background: rgba(255, 2585, 255, 0.05);
-    position: absolute;
+    /* background: rgba(255, 2585, 255, 0.05); */
+    background: #ccc;
+    /* position: absolute; */
+    position: fixed;
     top: 0;
     left: 0;
   }
   
   .spinner > .bounce {
-    width: 10rpx;
-    height: 10rpx;
+    /* width: 10rpx;
+    height: 10rpx; */
+    width: 50rpx;
+    height: 50rpx;
     background-color: #999;
     border-radius: 100%;
     display: inline-block;
@@ -182,13 +186,13 @@
     animation: bouncedelay 1.4s infinite ease-in-out;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    margin-top: 52%;
+    /* margin-top: 52%; */
   }
   
   .spinner .bounce1 {
     -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
-    margin-left: 15%;
+    /* margin-left: 15%; */
   }
   
   .spinner .bounce2 {

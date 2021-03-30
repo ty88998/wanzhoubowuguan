@@ -25,7 +25,7 @@ Page({
         ticketRules: data.ticketRules,
         deposit: data.deposit,
         phoneNo:data.phoneNo,
-        openingHours: `周二至周日${data.openingHours} - ${data.closeingHours} (节假日除外)\n16:30以后停止进馆`
+        openingHours: `周二至周日 ${data.openingHours} - ${data.closeingHours} (法定节假日周一正常开馆)\n16:30以后停止进馆`
       }
       this.setData({
         museumInfoThis

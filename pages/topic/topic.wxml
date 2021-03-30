@@ -10,14 +10,15 @@
         <view class="scene">
           <view class="topic-header">
             <text class="topic-name">{{indexInfo.name}}</text>
-            <text class="topic-region">——{{indexInfo.region}}</text>
+            <!-- <text class="topic-region">——{{indexInfo.region}}</text> -->
           </view>
-          <view class="topic-preface">
+          <!-- <view class="topic-preface">
             <image class="preface-img" src="../../assets/preface.png"></image>
             <text>序言</text>
-          </view>
+          </view> -->
           <view class="topic-content">
-            <text>{{indexInfo.preface}}</text>
+            <!-- <text>{{indexInfo.preface}}</text> -->
+            <view wx:for="{{preface}}" wx:key="index"><text>{{item}}</text></view>
           </view>
         </view>
       </view>
@@ -32,7 +33,8 @@
               <text>{{item.name}}</text>
             </view> -->
             <view class="scene-synopsis topic-content">
-              <text>{{item.synopsis}}</text>
+              <!-- <text>{{item.synopsis}}</text> -->
+              <view wx:for="{{resetScenesTextArray[index]}}" wx:key="index"><text>{{item}}</text></view>
             </view>
             <view class="collections topic-content">
               <view class="collection-item" wx:for="{{item.collections}}" wx:for-item="collection" wx:key="*this">
